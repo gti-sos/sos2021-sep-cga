@@ -4,59 +4,59 @@ var router = express.Router();
 //Sacamos el paquete nedb, el paquete de la base de datos
 var Datastore=require("nedb");
 
-var db_ab=new Datastore({filename: './medalsdb'});
-    db_ab.loadDatabase(function (err) { //La llamada de vuelta, que es opcional
+var db_medal=new Datastore({filename: './medalsdb'});
+    db_medal.loadDatabase(function (err) { //La llamada de vuelta, que es opcional
         //Ahora los comandos serán ejecutados
     });
 
-var db_abandono = [];
+var rio_medal = [];
 
 var d_g = [
     {
-        "degree": "History",
-        "year": 2018,
-        "surrender_counts": 193,
-        "new_students": 533,
-        "surrender_percent":36.21,
-        "center": "FHISTRY"
+        "country": "EEUU",
+        "player": 264,
+        "sports": 291,
+        "gold_medal": 46,
+        "silver_medal":37,
+        "bronze_medal": 38
     },
     {
-        "degree": "Computer_Science",
-        "year": 2018,
-        "surrender_counts": 47,
-        "new_students": 237,
-        "surrender_percent":19.83,
-        "center": "ETSII"
+        "country": "UK",
+        "player": 366,
+        "sports": 25,
+        "gold_medal": 27,
+        "silver_medal":23,
+        "bronze_medal": 17
     },
     {
-        "degree": "Greography",
-        "year": 2018,
-        "surrender_counts": 5,
-        "new_students": 63,
-        "surrender_percent":7.94,
-        "center": "FHISTRY"
+        "country": "China",
+        "player": 392,
+        "sports": 32,
+        "gold_medal": 26,
+        "silver_medal":18,
+        "bronze_medal": 26
     },
     {
-        "degree": "Art",
-        "year": 2018,
-        "surrender_counts": 68,
-        "new_students": 531,
-        "surrender_percent":12.81,
-        "center": "FBBAA"
+        "country": "Russia",
+        "player": 282,
+        "sports": 25,
+        "gold_medal": 19,
+        "silver_medal":17,
+        "bronze_medal": 20
     },
     {
-        "degree": "Nursering",
-        "year": 2018,
-        "surrender_counts": 24,
-        "new_students": 134,
-        "surrender_percent":17.91,
-        "center": "FEFP"
+        "country": "Germany",
+        "player": 422,
+        "sports": 27,
+        "gold_medal": 17,
+        "silver_medal":10,
+        "bronze_medal": 15
     }
 ];
 
 //5.2: loadInitialData
 router.get("/loadInitialData", (req,res) =>{
-    db_ab.insert(d_g);
+    db_medal.insert(d_g);
     console.log(`Datos anadidos: <${JSON.stringify(d_g,null,2)}>`);
     res.sendStatus(201); //Created
 });
@@ -66,14 +66,14 @@ router.get("/loadInitialData", (req,res) =>{
 
 /*router.get("/",(req,res)=>{
 		console.log(`Queremos solicitar datos de los abandonos`);
-		return res.send(JSON.stringify(db_abandono,null,2));
+		return res.send(JSON.stringify(db_medal,null,2));
 });*/
 
-router.get("/surrenders",(req,res)=>{
+router.get("/medals",(req,res)=>{
 
-	var selectedSurrenders = [];
+	var selectedMedals = [];
 	
-	db_ab.find({},(err, surrendersFound)=> {
+	db_medal.find({},(err, medalsFound)=> {
 		if(err) {
 			console.error("ERROR accesing to the DB in GET" + err);
 			res.sendStatus(500); // INTERNAL ERROR. F06.6
@@ -82,100 +82,110 @@ router.get("/surrenders",(req,res)=>{
 			// Check if we want to search an specific budget or if we want all of them.
 			// In case of no filtering has been declared, all budgets will be sended. SEARCHS
 			if(Object.keys(req.query).length == 0) {
-				selectedSurrenders = surrendersFound;
+				selectedMedals = medalsFound;
 
 				// PAGINATION F06.3
 			} else if(req.query.limit != undefined || req.query.offset != undefined) {
-				selectedSurrenders = paginationMaker(req, surrendersFound);
+				selectedMedals = paginationMaker(req, medalsFound);
 			}
 			  else {
-				selectedSurrenders = filterOfRequest(req, surrendersFound);
+				selectedMedals = filterOfRequest(req, medalsFound);
 			}
 
 			// Get off the id.
-			selectedSurrenders.forEach((t)=>{
+			selectedMedals.forEach((t)=>{
 				delete t._id;
 			});
 
-			if(selectedSurrenders.includes("ERROR")) {
+			if(selectedMedals.includes("ERROR")) {
 				res.sendStatus(400); // BAD REQUEST, the values of limit and offset are wrong. F06.6
-			} else if(selectedSurrenders.length == 0) {
+			} else if(selectedMedals.length == 0) {
 				console.error('No surrender has been found');
 				res.sendStatus(404); // NOT FOUND F06.6
 			}
 			else {
 				// RETURNS AN ARRAY F06.11
-				console.log(`Es array?: <${Array.isArray(selectedSurrenders)}>`);
-				res.status(200).send(JSON.stringify(selectedSurrenders,null,2)); //OK F06.6
+				console.log(`Es array?: <${Array.isArray(selectedMedals)}>`);
+				res.status(200).send(JSON.stringify(selectedMedals,null,2)); //OK F06.6
 			}
 		}
 	});
 });
 
 // Search method F06.2
-function filterOfRequest(req, surrenders) {
+function filterOfRequest(req, medals) {
 	var res = [];
 
-	for(var surrender of surrenders) {
+	for(var medal of medals) {
 	var check = true;
 
 	// We mus check for each budget wich field is selected to comparate, if selected,
 	// the metod will check if the value of the budget on that field matches with the value on query.
-	if(req.query.degree != undefined) {
-		if(surrender.degree != req.query.degree)  {
+
+	/*
+	"country": "Germany",
+    "player": 422,
+    "sports": 27,
+    "gold_medal": 17,
+    "silver_medal":10,
+    "bronze_medal": 15
+	*/
+
+	if(req.query.country != undefined) {
+		if(medal.country != req.query.country)  {
 			check = false;
 		}
 	}
-	if(req.query.year != undefined) {
-		if(surrender.year != req.query.year)  {
+	if(req.query.player != undefined) {
+		if(medal.player != req.query.player)  {
 			check = false;
 		}
 	}
-	if(req.query.surrender_counts != undefined) {
-		if(surrender.surrender_counts != req.query.surrender_counts)  {
+	if(req.query.sports != undefined) {
+		if(medal.sports != req.query.sports)  {
 			check = false;
 		}
 	}
-	if(req.query.new_students != undefined) {
-		if(surrender.new_students != req.query.new_students)  {
+	if(req.query.gold_medal != undefined) {
+		if(medal.gold_medal != req.query.gold_medal)  {
 			check = false;
 		}
 	}
-	if(req.query.surrender_percent != undefined) {
-		if(surrender.surrender_percent != req.query.surrender_percent)  {
+	if(req.query.silver_medal != undefined) {
+		if(medal.silver_medal != req.query.silver_medal)  {
 			check = false;
 		}
 	}
-	if(req.query.center != undefined) {
-		if(surrender.center != req.query.center)  {
+	if(req.query.bronze_medal != undefined) {
+		if(medal.bronze_medal != req.query.bronze_medal)  {
 			check = false;
 		}
 	}
 
 	if(check) {
-		res.push(surrender);
+		res.push(medal);
 	}
 	
 	}
 	return res;
 
     /*
-        "degree": "History",
-        "year": 2018,
-        "surrender_counts": 193,
-        "new_students": 533,
-        "surrender_percent":36.21,
-        "center": "FHISTRY"
+        "country": "Germany",
+    	"player": 422,
+    	"sports": 27,
+    	"gold_medal": 17,
+    	"silver_medal":10,
+    	"bronze_medal": 15
     */
 }
 
 // Pagination method F06.3
-function paginationMaker(req, surrenders) {
+function paginationMaker(req, medals) {
 	var res = [];
 	const offset = req.query.offset;
 	const limit = req.query.limit;
 
-	if(limit < 1 || offset < 0 || offset > surrenders.length) {
+	if(limit < 1 || offset < 0 || offset > medals.length) {
 		console.error(`Error in pagination, you have exceded limits`);
 		res.push("ERROR");
 		return res;	
@@ -183,32 +193,32 @@ function paginationMaker(req, surrenders) {
 	const startIndex = offset;
 	const endIndex = startIndex + limit;
 
-	res = surrenders.slice(startIndex, endIndex);
+	res = medals.slice(startIndex, endIndex);
 	return res;
 }
 
 // POST TO RESOURCES LIST F04.1
-router.post("/surrenders", function(req,res){
-	var newSurrender = req.body;
+router.post("/medals", function(req,res){
+	var newMedal = req.body;
 
 	// WE SHOULD RETURN A 400 CODE WHEN WE DONT RECEIVE A JSON DATA WITH THE EXACTLY DATA STRUCTURE
 	// HOPED. F06.12
-	if(!isValidData(newSurrender)) {
+	if(!isValidData(newMedal)) {
 		console.error("ERROR incorrect structure of entry data in POST");
 		res.sendStatus(400); // BAD REQUEST F06.6
 	} else {
-		console.log(`Element (surrender) to be inserted: <${JSON.stringify(newSurrender,null,2)}>`);
+		console.log(`Element (surrender) to be inserted: <${JSON.stringify(newMedal,null,2)}>`);
 
-		db_ab.find({center: newSurrender.center},(err, surrendersFound)=> {
+		db_medal.find({country: newMedal.country},(err, medalsFound)=> {
 			if(err) {
 				console.error("ERROR accesing to the DB in POST" + err);
 				res.sendStatus(500); // INTERNAL ERROR F06.6
 			} else {
 
-				if (surrendersFound.length == 0) {
+				if (medalsFound.length == 0) {
 					console.log("New budget (this budget) can be inserted to the DB... inserting"
-					+ JSON.stringify(surrendersFound,null,2));
-					db_ab.insert(newSurrender);
+					+ JSON.stringify(medalsFound,null,2));
+					db_medal.insert(newMedal);
 					console.log("New budget (this budget) inserted");
 					res.sendStatus(201); // CREATED F06.6
 				} else {
@@ -221,54 +231,54 @@ router.post("/surrenders", function(req,res){
 });
 
 // GET TO A RESOURCE F04.3
-router.get("/surrenders/:degree/:year", function(req,res){
-	var Rdegree = req.params.degree;
-	var Ryear = parseInt(req.params.year);
+router.get("/medals/:player/:sports", function(req,res){
+	var Rplayer = parseInt(req.params.player);
+	var Rsports = parseInt(req.params.sports);
 
-	console.log(`Searching for the budget with center <${Rdegree}> and year <${Ryear}>`);
+	console.log(`Searching for the budget with center <${Rplayer}> and year <${Rsports}>`);
 
 	// With both of the identificators F06.10
-	db_ab.find({$and: [{degree: Rdegree}, {year: Ryear}]},{},(err, surrendersFound)=> {
+	db_medal.find({$and: [{degree: Rplayer}, {year: Rsports}]},{},(err, medalsFound)=> {
 		if(err) {
 			console.error("ERROR accesing to the DB in GET TO A RESOURCE" + err);
 			res.sendStatus(500); // INTERNAL ERROR F06.6
 		} else {
 
-			if(surrendersFound.length == 0) {
+			if(medalsFound.length == 0) {
 				console.error('Any data has been found');
 				res.sendStatus(404); // NOT FOUND F06.6
 			} else {
 				// Get off the id.
-				surrendersFound.forEach((t)=>{
+				medalsFound.forEach((t)=>{
 					delete t._id;
 				});
 				// RETURNS AN OBJECT, IN THIS CASE, THE ONLY OBJECT ON THE ARRAY F06.11
-				console.log(`Found the budget with center <${Rdegree}> and year <${Ryear}> type: <${typeof surrendersFound[0]}>`);
-				res.status(200).send(JSON.stringify(surrendersFound[0],null,2)); //OK F06.6 
+				console.log(`Found the budget with center <${Rplayer}> and year <${Rsports}> type: <${typeof medalsFound[0]}>`);
+				res.status(200).send(JSON.stringify(medalsFound[0],null,2)); //OK F06.6 
 			}
 		}
 	});
 });
 
 // DELETE TO A RESOURCE F04.4
-router.delete("/surrenders/:degree/:year", (req,res)=>{
-	var Ddegree = req.params.degree;
-	var Dyear = parseInt(req.params.year);
+router.delete("/medals/:player/:sports", (req,res)=>{
+	var Dplayer = parseInt(req.params.player);
+	var Dsport = parseInt(req.params.sports);
 
-	console.log(`Deleting the budget with center <${Ddegree}> and year <${Dyear}>...`);
+	console.log(`Deleting the budget with center <${Dplayer}> and year <${Dsport}>...`);
 
 	// With both of the identificators F06.10
-	db_ab.remove({$and: [{degree: Ddegree}, {year: Dyear}]},(err, numSurrendersRemoved)=>{
+	db_medal.remove({$and: [{degree: Dplayer}, {year: Dsport}]},(err, numMedalsRemoved)=>{
 		if(err) {
 			console.error("ERROR accesing to the DB in DELETE TO A RESOURCE" + err);
 			res.sendStatus(500); // INTERNAL ERROR F06.6
 		} else {
 
-			if(numSurrendersRemoved == 0) {
+			if(numMedalsRemoved == 0) {
 				console.error('Any data has been deleted');
 				res.sendStatus(404); // NOT FOUND F06.6
 			} else {
-				console.log(`The budget with center <${Ddegree}> and year <${Dyear}> has been deleted`)
+				console.log(`The budget with center <${Dplayer}> and year <${Dsport}> has been deleted`)
 				res.sendStatus(200); // OK F06.6
 			}
 		}
@@ -300,7 +310,7 @@ router.put("/surrenders/:degree/:year", function(req,res){
         "surrender_percent":36.21,
         "center": "FHISTRY"
     */
-		db_ab.update({$and: [{degree: Udegree}, {year: Uyear}]},{
+		db_medal.update({$and: [{degree: Udegree}, {year: Uyear}]},{
 			degree: updatedSurrender.degree,
 			year: updatedSurrender.year,
 			surrender_counts: updatedSurrender.surrender_counts,
@@ -344,17 +354,17 @@ router.delete("/surrenders", (req,res)=>{
 
 	console.log(`Deleting all the budgets...`);
 
-	db_ab.remove({},{multi: true},(err, numSurrendersRemoved)=>{
+	db_medal.remove({},{multi: true},(err, numMedalsRemoved)=>{
 		if(err) {
 			console.error("ERROR accesing to the DB in DELETE TO A RESOURCE" + err);
 			res.sendStatus(500); // INTERNAL ERROR F06.6
 		} else {
 
-			if(numSurrendersRemoved == 0) {
+			if(numMedalsRemoved == 0) {
 				console.error('Any data has been deleted');
 				res.sendStatus(404); // NOT FOUND F06.6
 			} else {
-				console.log(`All the budgets has been deleted, a total of <${numSurrendersRemoved}>`)
+				console.log(`All the budgets has been deleted, a total of <${numMedalsRemoved}>`)
 				res.sendStatus(200); // OK F06.6
 			}
 		}
@@ -375,27 +385,27 @@ function isValidData(obj){
 
 function validDataEntry(obj){
     if(Object.keys(obj).length !== 6) return false;
-    if (!obj["degree"]) return false;
-	if (!obj.degree) return false;
-	if (!obj["year"]) return false;
-    if (!obj.year) return false;
-	if (!obj["surrender_counts"]) return false;
-    if (!obj.surrender_counts) return false;
-	if (!obj["new_students"]) return false;
-    if (!obj.new_students) return false;
-    if (!obj["surrender_percent"]) return false;
-	if (!obj.surrender_percent) return false;
-    if (!obj["center"]) return false;
-	if (!obj.center) return false;
+    if (!obj["country"]) return false;
+	if (!obj.country) return false;
+	if (!obj["player"]) return false;
+    if (!obj.player) return false;
+	if (!obj["sports"]) return false;
+    if (!obj.sports) return false;
+	if (!obj["gold_medal"]) return false;
+    if (!obj.gold_medal) return false;
+    if (!obj["silver_medal"]) return false;
+	if (!obj.silver_medal) return false;
+    if (!obj["bronze_medal"]) return false;
+	if (!obj.bronze_medal) return false;
     return true;
 
      /*
-        "degree": "History",
-        "year": 2018,
-        "surrender_counts": 193,
-        "new_students": 533,
-        "surrender_percent":36.21,
-        "center": "FHISTRY"
+        "country": "Germany",
+        "player": 422,
+        "sports": 27,
+        "gold_medal": 17,
+        "silver_medal":10,
+        "bronze_medal": 15
     */
 }
 module.exports = router;
