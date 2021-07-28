@@ -17,7 +17,7 @@
         <strong>Repositorio</strong>: <a href="https://github.com/gti-sos/sos2021-sep-cga">gti-sos/sos2021-sep-cga</a>
     </li>
     <li>
-        <p><strong>Enlace al Repositorio</strong>: <a href="http://sos2021-09.herokuapp.com">http://sos2021-09.herokuapp.com</a></p>
+        <p><strong>Enlace al Repositorio</strong>: <a href="https://sos2021-sep-cga.herokuapp.com/">https://sos2021-sep-cga.herokuapp.com/</a></p>
     </li>
     <li>
         <p><strong>Interfaces de Programación de Aplicaciones (IPA)</strong>:</p>
