@@ -1,20 +1,28 @@
+//var cool =  require("cool-ascii-faces");
 var express = require("express");
-
+var path = require("path");
 var app = express();
+
 
 var port = (process.env.PORT || 10000);
 
+app.use("/", express.static(path.join(__dirname, "public")));
 
-app.use("/", express.static(path.join(__dirname,"public")));
+app.get("/hello",(req,res) => {
+    //response.send(cool());
+    res.send("Hello from this tiny server");
+    //console.log("New request has arrived");
 
-app.get("/v1", (req, res) => {
-    res.send("<html><body><h1>Buenas GET</h1></body></html>")
 });
 
-app.post("/v1", (req, res) => {
-    res.send("<html><body><h1>Buenas POST</h1></body></html>")
+app.post("/hello",(req,res) => {
+    res.send("Hello from this tiny server");
 });
 
 app.listen(port, () => {
-    console.log(`Server ready listening on port ${port}`);
+    console.log(`Server ready listening on ${port}`);
 });
+//console.log(cool());
+//FORMA SÍNCRONA (PEOR)
+//app.listen(port);
+//console.log(`Server ready listening on ${port}`);
