@@ -6,7 +6,7 @@ app.use(express.json()); // Automatically parses the requests body into a JSON
 app.use(express.static('public')); // Exposes the folder public in the webapp
 
 const realmadridAPI = require("./realmadridAPI/index");
-app.use('/api/v1/', realmadridAPI);
+app.use('/api/v1/RM', realmadridAPI);
 
 // ***** RUTAS APIS L07
 
