@@ -5,9 +5,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json()); // Automatically parses the requests body into a JSON
 app.use(express.static('public')); // Exposes the folder public in the webapp
 
-
-
-const realmadridAPI = require("./realmadridAPI/index");
+const realmadridAPI = require("./realmadridAPI/index.js");
 app.use('/api/v1/realmadridAPI', realmadridAPI);
 
 // ***** RUTAS APIS L07
