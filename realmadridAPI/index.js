@@ -72,7 +72,7 @@ router.get("/", (req,res) =>{
 });
 
 // Charge the initial data.
-router.get("/loadInitialData", (req,res) =>{
+router.get("/realmadridAPI/loadInitialData", (req,res) =>{
 	dbRealMadrid.insert(initialData);
     console.log(`Data added: <${JSON.stringify(initialData,null,2)}>`);
     res.sendStatus(201); // CREATED
