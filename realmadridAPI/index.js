@@ -95,7 +95,8 @@ router.get("/realmadridAPI",(req,res)=>{
 			// Check if we want to search an specific budget or if we want all of them.
 			// In case of no filtering has been declared, all budgets will be sended. SEARCHS
 			if(Object.keys(req.query).length == 0) {
-				
+				selectedRM = RMFound;
+
 				// PAGINATION F06.3
 			} else if(req.query.limit != undefined || req.query.offset != undefined) {
 				selectedRM = paginationMaker(req, RMFound);
