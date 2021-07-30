@@ -1,22 +1,25 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const path = require("path");
-const app = express();
+var express = require("express");
+
+var bodyParser = require("body-parser");
+
+var RM_api = require("./realmadridAPI");
+
+
+var port = (process.env.PORT || 10000);
+
+
+var BASE_API_PATH = "/api/v1"; 
+
+var app = express();
 app.use(bodyParser.json());
-const BASE_API_URL = "/api/v1";
-const port = process.env.PORT || 80;
+app.use(express.json());
 
-//----------------------------------coef
-const realmadridAPI = require(path.join(__dirname, "coefAPI"));
-const dbRM = path.join(__dirname,"realmadridAPI/realmadridAPI.db");
-realmadridAPI(app);
-//----------------------------------fin-coef
+RM_api.register(app, BASE_API_PATH);
 
+var path = require("path");
 
-app.use("/", express.static("./public"));
+app.use("/", express.static(path.join(__dirname,"public")));
 
 app.listen(port, () => {
-	console.log("Server ready");
+    console.log(`Server ready listening on ${port}`);
 });
-
-console.log("Starting server...");
