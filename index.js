@@ -1,24 +1,22 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const dataStore = require("nedb");
 const path = require("path");
-const cors = require("cors");
 const app = express();
-const port = process.env.PORT || 1500;
-
 app.use(bodyParser.json());
-app.use(cors());
+const BASE_API_URL = "/api/v1";
+const port = process.env.PORT || 80;
 
 //----------------------------------coef
-const rmAPIv1 = require(path.join(__dirname, "./src/back/realmadridAPI/v1"));
-rmAPIv1(app)
+const realmadridAPI = require(path.join(__dirname, "coefAPI"));
+const dbRM = path.join(__dirname,"realmadridAPI/realmadridAPI.db");
+realmadridAPI(app);
 //----------------------------------fin-coef
+
 
 app.use("/", express.static("./public"));
 
-
 app.listen(port, () => {
-	console.log("Server ready on:" + port);
+	console.log("Server ready");
 });
 
 console.log("Starting server...");
