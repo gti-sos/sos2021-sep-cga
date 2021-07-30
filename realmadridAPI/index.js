@@ -15,7 +15,7 @@ var router = express.Router();
 // Array de datos Inicales.
 var initialData = [
 	{ 
-		competition: "La Liga",
+		competition: "LaLiga",
 		year: 2001,
 		points: 80,
 		goal_score: 81,
@@ -23,7 +23,7 @@ var initialData = [
 		classification: 1
 	},
 	{ 
-		competition: "La Liga",
+		competition: "LaLiga",
 		year: 2002,
 		points: 66,
 		goal_score: 69,
@@ -31,7 +31,7 @@ var initialData = [
 		classification: 3
 	},
 	{ 
-		competition: "La Liga",
+		competition: "LaLiga",
 		year: 2003,
 		points: 78,
 		goal_score: 86,
@@ -39,7 +39,7 @@ var initialData = [
 		classification: 1
 	},
 	{ 
-		competition: "La Liga",
+		competition: "LaLiga",
 		year: 2004,
 		points: 70,
 		goal_score: 72,
@@ -47,7 +47,7 @@ var initialData = [
 		classification: 4
 	},
 	{ 
-		competition: "La Liga",
+		competition: "LaLiga",
 		year: 2005,
 		points: 80,
 		goal_score: 71,
@@ -55,7 +55,7 @@ var initialData = [
 		classification: 2
 	},
 	{ 
-		competition: "La Liga",
+		competition: "LaLiga",
 		year: 2006,
 		points: 70,
 		goal_score: 70,
