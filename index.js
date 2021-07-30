@@ -1,21 +1,24 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var medalapi = require("./medalAPI");
-var port = (process.env.PORT || 10000);
+const express = require("express");
+const bodyParser = require("body-parser");
+const dataStore = require("nedb");
+const path = require("path");
+const cors = require("cors");
+const app = express();
+const port = process.env.PORT || 1500;
 
-
-var BASE_API_PATH = "/api/v1"; 
-
-var app = express();
 app.use(bodyParser.json());
-app.use(express.json());
+app.use(cors());
 
-medalapi.register(app, BASE_API_PATH);
+//----------------------------------coef
+const rmAPIv1 = require(path.join(__dirname, "./src/back/realmadridAPI/v1"));
+rmAPIv1(app)
+//----------------------------------fin-coef
 
-var path = require("path");
+app.use("/", express.static("./public"));
 
-app.use("/", express.static(path.join(__dirname,"public")));
 
 app.listen(port, () => {
-    console.log(`Server ready listening on ${port}`);
+	console.log("Server ready on:" + port);
 });
+
+console.log("Starting server...");
