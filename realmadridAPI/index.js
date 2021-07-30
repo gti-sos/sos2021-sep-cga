@@ -23,7 +23,7 @@ router.get("/", (req,res) =>{
 });
 
 // Charge the initial data.
-app.get("/realmadridAPI/loadInitialData", (req, res) => {
+router.get("/realmadridAPI/loadInitialData", (req, res) => {
     realmadrid_data = [
 		{ 
 			competition: "La Liga",
