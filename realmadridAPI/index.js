@@ -119,7 +119,7 @@ router.get("/realmadridAPI",(req,res)=>{
 			else {
 				// RETURNS AN ARRAY F06.11
 				console.log(`Es array?: <${Array.isArray(selectedRM)}>`);
-				res.status(200).send(JSON.stringify(selectedR,null,2)); //OK F06.6
+				res.status(200).send(JSON.stringify(selectedRM,null,2)); //OK F06.6
 			}
 		}
 	});
