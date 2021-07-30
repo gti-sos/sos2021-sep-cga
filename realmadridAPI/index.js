@@ -1,249 +1,258 @@
-module.exports = function (app) {
-    console.log("Registering Real Madrid API....");
-    const dataStore = require ("nedb");
-    const path = require ("path");
-    const dbFileName =path.join(__dirname,"./realmadridAPI.db"); 
-    const BASE_API_URL="/api/v1";   
+var express = require("express");
+var path = require("path");
 
-    const dbRM = new dataStore({
-        filename: dbFileName,
-        autoload:true
-    });
-	
-var initialRM = [
-	{ 
-		competition: "La Liga",
-		year: 2001,
-		points: 80,
-		goal_score: 81,
-		win_games: 24,
-		classification: 1
-	},
-	{ 
-		competition: "La Liga",
-		year: 2002,
-		points: 66,
-		goal_score: 69,
-		win_games: 19,
-		classification: 3
-	},
-	{ 
-		competition: "La Liga",
-		year: 2003,
-		points: 78,
-		goal_score: 86,
-		win_games: 22,
-		classification: 1
-	},
-	{ 
-		competition: "La Liga",
-		year: 2004,
-		points: 70,
-		goal_score: 72,
-		win_games: 21,
-		classification: 4
-	},
-	{ 
-		competition: "La Liga",
-		year: 2005,
-		points: 80,
-		goal_score: 71,
-		win_games: 25,
-		classification: 2
-	},
-	{ 
-		competition: "La Liga",
-		year: 2006,
-		points: 70,
-		goal_score: 70,
-		win_games: 20,
-		classification: 2
-	}
-];
+var bodyParser = require("body-parser");
+var BASE_API_PATH = "/api/v1"; 
+var app = express();
 
-	
-    function deleteIDs (rm){
-        rm.forEach( (m) => {
-            delete m._id;
-        });
-    }
+app.use(bodyParser.json());
+app.use(express.json());
 
+var DataStore = require("nedb");
+var datafile = path.join(__dirname, 'realmadridAPI.db');
+var db = new DataStore({filename: datafile, autoload: true});
 
+module.exports.register = (app, BASE_API_PATH) => { 
 
+    var realmadrid_data =[];
 
-//LOADINITIALDATA RMBD-----------------------------------------------
-    app.get(BASE_API_URL + "/realmadridAPI/loadInitialData", (req, res) => {
-		dbRM.remove({});
-        	console.log("New GET .../loadInitialData")
-        dbRM.insert(initialRM);
-            console.log("Initial coef loaded: " + JSON.stringify(initialRM, null, 2));
-				res.send(JSON.stringify(initialRM,null,2));
-    });
-	
-
-	
-// POST GLOBAL-coef----------------------------------------------------
-
-	app.post(BASE_API_URL+"/realmadridAPI", (req, res) => {
-        var rm = req.body;
-
-		if((rm == {}) 
-			 || (rm.competition == null) 
-             || (rm.year == null) 
-			 || (rm.points == null) 
-			 || (rm.goal_score == null) 
-		     || (rm.win_games == null)
-             || (rm.classification == null)){	
-			res.sendStatus(400,"BAD REQUEST");
-		} else {
-			dbRM.insert(rm);
-			
-			res.sendStatus(201, "CREATED");
+app.get(BASE_API_PATH + "/realmadridAPI/loadInitialData", (req, res) => {
+    realmadrid_data = [
+		{ 
+			competition: "La Liga",
+			year: 2001,
+			points: 80,
+			goal_score: 81,
+			win_games: 24,
+			classification: 1
+		},
+		{ 
+			competition: "La Liga",
+			year: 2002,
+			points: 66,
+			goal_score: 69,
+			win_games: 19,
+			classification: 3
+		},
+		{ 
+			competition: "La Liga",
+			year: 2003,
+			points: 78,
+			goal_score: 86,
+			win_games: 22,
+			classification: 1
+		},
+		{ 
+			competition: "La Liga",
+			year: 2004,
+			points: 70,
+			goal_score: 72,
+			win_games: 21,
+			classification: 4
+		},
+		{ 
+			competition: "La Liga",
+			year: 2005,
+			points: 80,
+			goal_score: 71,
+			win_games: 25,
+			classification: 2
+		},
+		{ 
+			competition: "La Liga",
+			year: 2006,
+			points: 70,
+			goal_score: 70,
+			win_games: 20,
+			classification: 2
 		}
-	});	
-	
-	
-	
-// DELETE global-coef-----------------------------------------------
-	app.delete(BASE_API_URL + "/realmadridAPI", (req,res)=>{
-		dbRM.remove({}, { multi: true }, function (err, numRemoved) {
-            if (numRemoved>=1) {
-                res.sendStatus(200, "OK");
-            }else{
-                res.sendStatus(404, "NOT FOUND");
-            }
-          
-        });
+   ];
+   
+
+  db.find({ $or: [{ year: "2001" }, { year: "2002" }] }, { _id: 0 }, function (err, data) {
+    if (err) {
+        console.error("ERROR accesing DB in GET");
+        res.sendStatus(500);
+    } else {
+        if (data.length == 0) {
+            db.insert(realmadrid_data);
+            console.log(`Loaded initial data: <${JSON.stringify(realmadrid_data, null, 2)}>`);
+            res.sendStatus(201);
+        } else {
+            console.error(`initial data already exists`);
+            res.sendStatus(409);
+        }
+    }
+});
+})
+app.get(BASE_API_PATH + "/realmadridAPI", (req,res)=>{
+    var query = req.query;
+
+//Aquí se obtienen offset y limit con query, si son null, le hacemos un delete y listo.
+var limit = parseInt(query.limit);
+var offset = parseInt(query.offset);
+
+//Eliminamos los offset y limit.
+delete query.offset;
+delete query.limit;
+
+//Parseamos las propiedades numéricas
+if (query.hasOwnProperty("year")) {
+	query.year = parseInt(query.year);
+	console.log(query.year);
+}
+if (query.hasOwnProperty("points")) {
+	query.points = parseInt(query.points);
+	console.log(query.points);
+}
+if (query.hasOwnProperty("goal_score")) {
+	query.goal_score = parseInt(query.goal_score);
+	console.log(query.goal_score);
+}
+if (query.hasOwnProperty("win_games")) {
+	query.win_games = parseInt(query.win_games);
+	console.log(query.win_games);
+}
+if (query.hasOwnProperty("classification")) {
+	query.classification = parseInt(query.classification);
+	console.log(query.classification);
+}
+
+console.log(query);
+
+db.find(query).skip(offset).limit(limit).exec((error, realmadrid_stats) => {
+	realmadrid_stats.forEach((n) => {
+		delete n._id;
     });
-	
-	
-//GET GLOBAL-coef/team/year----------------------------------------------
 
-	app.get(BASE_API_URL+"/realmadridAPI/:competition/:year", (req,res)=>{
-	
-	var competition = req.params.competition;
-	var year =  parseInt(req.params.year);
-       
-        dbRM.find({$and: [{"competition": competition},{"year": year}]  },(err,rm)=>{
-            console.log(rm);
-            if (rm.length != 0) {
-                deleteIDs(rm);
-                res.send(JSON.stringify(rm[0],null,2));
-                console.log("Data sent: " + JSON.stringify(rm[0],null,2));
-            } else{
-                res.sendStatus(404, "NOT FOUND");
-            }
-        })
-	});
-	
+	if (realmadrid_stats.length < 0) {
+		res.sendStatus(400, "Bad request");
+		console.log("Requested data is INVALID");
+	}
+    else {
+		res.send(JSON.stringify(realmadrid_stats, null, 2));
+		console.log("Data sent:" + JSON.stringify(realmadrid_stats, null, 2));
 
-
-	
-// PUT global-coef/team/year--------------------------------------------------
-
-app.put(BASE_API_URL+"/realmadridAPI/:competition/:year", (req, res) =>{
-  
-  	var competition = req.params.competition;
-	var year =  parseInt(req.params.year);
-	var updateRM = req.body;
-  
-
-		dbRM.update({competition: competition, year: year}, updateRM, (error, numRemoved) => {
-			// Checking if any data has been updated (numRemoved>=1)
-			if (numRemoved == 0) {
-				res.sendStatus(404, "NOT FOUND");
-			} else {
-				res.sendStatus(200, "OK");
-			}
-		});
-
-	});
-
-
-
-
-
-// DELETE global-coef/team/year------------------------------------------------
-
-app.delete(BASE_API_URL+"/realmadridAPI/:competition/:year", (req,res)=>{
-	
-	var competition = req.params.competition;
-	var year =  parseInt(req.params.year);
-	
-	var query = {competition: competition, year:year};
-		
-		dbRM.remove(query, { multi: true }, (error, numRemoved) => {
-			if (numRemoved == 0) {
-				res.sendStatus(404, "NOT FOUND");
-			} else {
-				res.sendStatus(200, "OK");
-			}
-		}); 
-	});
-	
-	
-	
-	
-	
-//POST error-----------------------------------------------------------
-app.post(BASE_API_URL + "/realmadridAPI/:competition/:year", (req, res) => {
-    res.sendStatus(405);
+	}
+});
 });
 
-//PUT error--------------------------------------------------------------
-app.put(BASE_API_URL + "/realmadridAPI/:competition/:year", (req, res) => {
-    res.sendStatus(405);
-});  
 
+ app.post(BASE_API_PATH + "/realmadridAPI", (req, res) => {
+   var data = req.body;
+   var competition = req.body.competition;
+var year = req.body.year;
 
-	
-	
-	
-	
-//Búsqueda por todos los campos del recurso------------------------------
+	db.find({ "competition": competition, "year": year }).exec((error, realmadrid_stats) => {
+		if (realmadrid_stats.length > 0) {
+			res.sendStatus(409);
+			console.log("There's an object with those primary keys");
+			return;
+		}
+		if ((data == null)
+				|| (data.competition == null)
+				|| (data.year == null)
+				|| (data.points == null)
+				|| (data.goal_score == null)
+				|| (data.win_games == null)
+				|| (data.classification == null)
+				|| ((Object.keys(data).length != 6))) {
 
+				res.sendStatus(400, "Falta uno o más campos");
+				console.log(data);
+				console.log("POST not created");
+				return;
+			}
+			db.insert(data);
 
-	
-	app.get(BASE_API_URL+"/realmadridAPI",(req, res) => {
- console.log("GET GLOBAL RMDATA");
- 
- 
+			res.sendStatus(201, "Post created");
+			console.log(JSON.stringify(data, null, 2));
+		});
+});
 
- if(req.query.year) req.query.year = parseInt(req.query.year);
- if(req.query.points) req.query.points = parseInt(req.query.points);
- if(req.query.goal_score) req.query.goal_score = parseInt(req.query.goal_score);
- if(req.query.win_games) req.query.win_games = parseInt(req.query.win_games);
- if(req.query.classification) req.query.classification = parseInt(req.query.classification);
- 
-	var parametros = req.query;
-	console.log(parametros);
+app.get(BASE_API_PATH + "/realmadridAPI/:competition/:year", (req, res) => {
+   var competition = req.params.competition;
+   var year = parseInt(req.params.year);
 
- 		let offset = null;
-		let limit = null;
-		
-		
-		if (req.query.offset) {
-            offset = parseInt(req.query.offset);
-            delete req.query.offset;
-        }
-        if (req.query.limit) {
-            limit = parseInt(req.query.limit);
-            delete req.query.limit;
-        }		
-		dbRM.find(parametros).skip(offset).limit(limit).exec((err, rm) => {
-  
-  			rm.forEach((c) => {
-  			 delete c._id;
-  			});
-			
-
-  
-  res.send(JSON.stringify(rm,null,2));
-  console.log("RESOURCES DISPLAYED");
- });
- 
-
-	});
-	
+   db.find({ "competition": competition, "year": year }).exec((err, param) => {
+    if (param.length == 1) {
+        delete param[0]._id;
+  res.send(JSON.stringify(param[0], null, 2));
+  console.log("/GET - Recurso Específico /competition/year: " + JSON.stringify(param[0]), null, 2);
 }
-	
+else {
+  res.sendStatus(404, "Not found");
+}
+});
+
+});
+
+
+app.delete(BASE_API_PATH + "/realmadridAPI/:competition/:year", (req, res) => {
+   var competition = req.params.competition;
+   var year = parseInt(req.body.year);
+
+           db.remove({ "competition": competition, "year": year }, { multi: true }, (err, paramsDeleted) => {
+            if (paramsDeleted == 0) {
+                res.sendStatus(404, "Not found");
+       }
+   else {
+    res.sendStatus(200);
+}
+});
+});
+
+
+app.put(BASE_API_PATH + "/realmadridAPI/:competition/:year", (req, res) => {
+  
+           var competitionData = req.params.competition; //Pillar el contenido después de los dos puntos.
+           var competitionD = req.body.competition;
+   
+           var yearData = parseInt(req.params.year);
+           var yearD = parseInt(req.body.year);
+   
+           var body = req.body;
+           if (competitionData != competitionD || yearData != yearD) {
+               res.sendStatus(409);
+               console.warn("There is a conflict!");
+       }
+       else {
+        db.update({ "competition": competitionData, "year": yearData }, body, (err, paramsUpdated) => {
+            if (paramsUpdated == 0) {
+                res.sendStatus(404, "Not found");
+            }
+            else {
+                res.sendStatus(200);
+                console.log("PUT Correcto");
+            }
+        });
+    }
+});
+   /*}
+}); */
+
+
+app.post(BASE_API_PATH + "/realmadridAPI/:competition/:date", (req, res) => {
+   console.log("POST no valido/encontrado");
+   return res.sendStatus(405);
+
+});
+
+
+app.put(BASE_API_PATH + "/realmadridAPI", (req, res) => {
+   console.log("PUT no valido/encontrado");
+   return res.sendStatus(405);
+
+});
+
+
+app.delete(BASE_API_PATH + "/realmadridAPI", (req, res) => {
+  
+   db.remove({}, { multi: true }, (error, realmadrid_stats_deleted) => {
+    console.log(realmadrid_stats_deleted + " realmadrid_stats deleted");
+});
+res.sendStatus(200, "OK");
+
+});
+
+};
