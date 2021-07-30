@@ -13,56 +13,7 @@ var dbRealMadrid = new Datastore({ filename: './realmadridAPI/realmadridDB' });
 var router = express.Router();
 
 // Array de datos Inicales.
-var initialData = [
-	{ 
-		competition: "La Liga",
-		year: 2001,
-		points: 80,
-		goal_score: 81,
-		win_games: 24,
-		classification: 1
-	},
-	{ 
-		competition: "La Liga",
-		year: 2002,
-		points: 66,
-		goal_score: 69,
-		win_games: 19,
-		classification: 3
-	},
-	{ 
-		competition: "La Liga",
-		year: 2003,
-		points: 78,
-		goal_score: 86,
-		win_games: 22,
-		classification: 1
-	},
-	{ 
-		competition: "La Liga",
-		year: 2004,
-		points: 70,
-		goal_score: 72,
-		win_games: 21,
-		classification: 4
-	},
-	{ 
-		competition: "La Liga",
-		year: 2005,
-		points: 80,
-		goal_score: 71,
-		win_games: 25,
-		classification: 2
-	},
-	{ 
-		competition: "La Liga",
-		year: 2006,
-		points: 70,
-		goal_score: 70,
-		win_games: 20,
-		classification: 2
-	}
-];
+var initialData = []
 
 
 // Index page.
@@ -72,11 +23,78 @@ router.get("/", (req,res) =>{
 });
 
 // Charge the initial data.
-router.get("/realmadridAPI/loadInitialData", (req,res) =>{
-	dbRealMadrid.insert(initialData);
-    console.log(`Data added: <${JSON.stringify(initialData,null,2)}>`);
-    res.sendStatus(201); // CREATED
+app.get("/realmadridAPI/loadInitialData", (req, res) => {
+    realmadrid_data = [
+		{ 
+			competition: "La Liga",
+			year: 2001,
+			points: 80,
+			goal_score: 81,
+			win_games: 24,
+			classification: 1
+		},
+		{ 
+			competition: "La Liga",
+			year: 2002,
+			points: 66,
+			goal_score: 69,
+			win_games: 19,
+			classification: 3
+		},
+		{ 
+			competition: "La Liga",
+			year: 2003,
+			points: 78,
+			goal_score: 86,
+			win_games: 22,
+			classification: 1
+		},
+		{ 
+			competition: "La Liga",
+			year: 2004,
+			points: 70,
+			goal_score: 72,
+			win_games: 21,
+			classification: 4
+		},
+		{ 
+			competition: "La Liga",
+			year: 2005,
+			points: 80,
+			goal_score: 71,
+			win_games: 25,
+			classification: 2
+		},
+		{ 
+			competition: "La Liga",
+			year: 2006,
+			points: 70,
+			goal_score: 70,
+			win_games: 20,
+			classification: 2
+		}
+   ];
+   
+   
+ //  console.log(`Loaded Initial Data: <${JSON.stringify(realmadrid_data, null, 2)}>`);
+  // return res.sendStatus(200);
+
+  db.find({ $or: [{ year: 2001 }, { year: 2002 }] }, { _id: 0 }, function (err, data) {
+    if (err) {
+        console.error("ERROR accesing DB in GET");
+        res.sendStatus(500);
+    } else {
+        if (data.length == 0) {
+            db.insert(realmadrid_data);
+            console.log(`Loaded initial data: <${JSON.stringify(realmadrid_data, null, 2)}>`);
+            res.sendStatus(201);
+        } else {
+            console.error(`initial data already exists`);
+            res.sendStatus(409);
+        }
+    }
 });
+})
 
 ////////////////////// MAIN CODE ////////////////////////////
 
