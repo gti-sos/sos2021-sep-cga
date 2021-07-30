@@ -371,11 +371,17 @@ function isValidData(obj){
 function validDataEntry(obj){
     if(Object.keys(obj).length !== 6) return false;
     if (!obj["competition"]) return false;
+	if (!obj.competition) return false;
     if (!obj["year"]) return false;
+	if (!obj.year) return false;
     if (!obj["points"]) return false;
+	if (!obj.points) return false;
     if (!obj["goal_score"]) return false;
+	if (!obj.goal_score) return false;
     if (!obj["win_games"]) return false;
+	if (!obj.win_games) return false;
     if (!obj["classification"]) return false;
+	if (!obj.classification) return false;
     return true;
 }
 
