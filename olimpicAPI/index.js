@@ -61,6 +61,28 @@ var olimpicInitialData = [
 
  module.exports.register = (app) => {
 
+	app.get(BASE_API_PATH+"/:city/:year/:players",(req,res)=>{
+		var cityD = req.params.city;
+		var yearD = parseInt(req.params.year);
+		var playersD = parseInt(req.params.players);
+		dbFood.find({$and:[{ city: cityD}, {year: yearD }, {players: playersD}]}, (err, olimpic_size)=>{
+			if (err){
+				console.error("ERROR accessing 	DB in GET");
+					res.sendStatus(500);
+			}else{
+				if(olimpic_size.length==0){
+					res.sendStatus(404);	
+				}else{
+					olimpic_size.forEach((f)=>{
+                		delete f._id
+					});
+					res.send(JSON.stringify(olimpic_size[0],null,2));
+				}
+			}
+		});
+
+    });
+
 
 	//OBTIENE TODO EL ARRAY
     app.get(BASE_API_PATH, (req,res)=>{
