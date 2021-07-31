@@ -17,7 +17,7 @@ const dbOlimpic = new Datastore({
 
 var olimpicInitialData = [
 	{
-		"City": "Rio",
+		"city": "Rio",
 		"year": 2016,
 		"players": 306,
 		"gold_medal": 7,
@@ -25,7 +25,7 @@ var olimpicInitialData = [
 		"bronze_medal": 6,
 	},
 	{
-		"City": "London",
+		"city": "London",
 		"year": 2012,
 		"players": 278,
 		"gold_medal": 4,
@@ -33,7 +33,7 @@ var olimpicInitialData = [
 		"bronze_medal": 4,
 	},
 	{
-		"City": "Pekin",
+		"city": "Pekin",
 		"year": 2008,
 		"players": 286,
 		"gold_medal": 5,
@@ -41,7 +41,7 @@ var olimpicInitialData = [
 		"bronze_medal": 3,
 	},
 	{
-		"City": "Athens",
+		"city": "Athens",
 		"year": 2004,
 		"players": 317,
 		"gold_medal": 3,
@@ -49,7 +49,7 @@ var olimpicInitialData = [
 		"bronze_medal": 6,
 	},
 	{
-		"City": "Sidney",
+		"city": "Sidney",
 		"year": 2000,
 		"players": 323,
 		"gold_medal": 3,
