@@ -259,4 +259,23 @@ var olimpicInitialData = [
 		}
 	});
 	});
+
+	app.get(BASE_API_PATH + "/:city/:year", (req, res) => {
+		var city = req.params.city;
+		var year = parseInt(req.params.year);
+	 
+		db.find({ "city": city, "year": year }).exec((err, param) => {
+		 if (param.length == 1) {
+			 delete param[0]._id;
+	   res.send(JSON.stringify(param[0], null, 2));
+	   console.log("/GET - Recurso Específico /city/year: " + JSON.stringify(param[0]), null, 2);
+	 }
+	 else {
+	   res.sendStatus(404, "Not found");
+	 }
+	 });
+	 
+	 });
  };
+
+ 
