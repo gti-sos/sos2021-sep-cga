@@ -1,0 +1,618 @@
+{
+	"info": {
+		"_postman_id": "23d003a4-4913-4e13-80b2-798e9a67da99",
+		"name": "sos2021-sep-cga v1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Load Initial Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a la lista de Recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la lista de Recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": \"PRUEBAPOST\",\r\n    \"year\": 2016,\r\n    \"gold_medal\": 7,\r\n    \"silver_medal\": 4,\r\n    \"bronze_medal\": 6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la lista de Recursos (Conflict)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function(){\r",
+							"    pm.response.to.have.status(409);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": \"PRUEBAPOST\",\r\n    \"year\": 2016,\r\n    \"gold_medal\": 7,\r\n    \"silver_medal\": 4,\r\n    \"bronze_medal\": 6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a un Recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats/PRUEBAPOST/2016",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats",
+						"PRUEBAPOST",
+						"2016"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a un Recurso (NOT FOUND)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats/PRUEBAPOST/2016",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats",
+						"PRUEBAPOST",
+						"2016"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a un Recurso",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": \"PRUEBAPUT\",\r\n    \"year\": 1000,\r\n    \"gold_medal\": 876,\r\n    \"silver_medal\": 434,\r\n    \"bronze_medal\": 123\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats/Sidney/2000",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats",
+						"Sidney",
+						"2000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a lista de Recursos(FALLO)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function(){\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": \"PRUEBAPUT\",\r\n    \"year\": 1000,\r\n    \"gold_medal\": 876,\r\n    \"silver_medal\": 434,\r\n    \"bronze_medal\": 123\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a un Recurso (FALLO)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function(){\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": \"PRUEBAPUT\",\r\n    \"year\": 1000,\r\n    \"gold_medal\": 876,\r\n    \"silver_medal\": 434,\r\n    \"bronze_medal\": 123\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats/Sidney/2000",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats",
+						"Sidney",
+						"2000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a la lista de recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Load Initial Data Para las búsquedas y paginación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Búsqueda por 2 campos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats?city=Rio&year=2016",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "Rio"
+						},
+						{
+							"key": "year",
+							"value": "2016"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats?limit=2&offset=0",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginación 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats?limit=2&offset=1",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a la lista de recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats",
+					"protocol": "https",
+					"host": [
+						"sos2021-sep-cga",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"olimpic-stats"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
