@@ -6,13 +6,7 @@ var Datastore = require("nedb");
 
 const dbFileName = path.join(__dirname,"olimpic-stats.db");
 
-const dbOlimpic = new Datastore({
-				filename: dbFileName, 
-				autoload: true,
-					autoload: true,
-				autoload: true,
-				autoload: true
-		});
+const dbOlimpic = new Datastore({filename: dbFileName, autoload: true});
 
 
 var olimpicInitialData = [
