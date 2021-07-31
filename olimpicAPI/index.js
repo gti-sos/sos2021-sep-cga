@@ -260,21 +260,6 @@ var olimpicInitialData = [
 	});
 	});
 	
-	app.get(BASE_API_URL+"/:city", (req, res)=>{
-		var cityParam = req.params.city;
-		dbOlimpic.find({city: cityParam}, (err,olimpic_stats)=>{
-			olimpic_stats.forEach((c)=>{
-				delete c._id;
-			});
-
-			if(olimpic_stats.length>=1){
-				res.send(JSON.stringify(olimpic_stats, null, 2));
-			}else{
-				res.sendStatus(404,"NOT FOUND")
-			}
-
-		});
-	});
  };
 
  
