@@ -1,19 +1,23 @@
-var express = require("express");
-var router = express.Router();
+var BASE_API_PATH = "/api/v1/olimpic-stats";
 
-//Sacamos el paquete nedb, el paquete de la base de datos
-var Datastore=require("nedb");
+var path = require("path");
 
-var db_oli=new Datastore({filename: './olimpicAPI/olimpicdb'});
-    db_oli.loadDatabase(function (err) { //La llamada de vuelta, que es opcional
-        //Ahora los comandos serán ejecutados
-    });
+var Datastore = require("nedb");
 
-var db_olimpico = [];
+const dbFileName = path.join(__dirname,"olimpic-stats.db");
 
-var d_oli = [
-    {
-		"city": "Rio",
+const dbOlimpic = new Datastore({
+				filename: dbFileName, 
+				autoload: true,
+					autoload: true,
+				autoload: true,
+				autoload: true
+		});
+
+
+var olimpicInitialData = [
+	{
+		"City": "Rio",
 		"year": 2016,
 		"players": 306,
 		"gold_medal": 7,
@@ -21,7 +25,7 @@ var d_oli = [
 		"bronze_medal": 6,
 	},
 	{
-		"city": "London",
+		"City": "London",
 		"year": 2012,
 		"players": 278,
 		"gold_medal": 4,
@@ -29,7 +33,7 @@ var d_oli = [
 		"bronze_medal": 4,
 	},
 	{
-		"city": "Pekin",
+		"City": "Pekin",
 		"year": 2008,
 		"players": 286,
 		"gold_medal": 5,
@@ -37,7 +41,7 @@ var d_oli = [
 		"bronze_medal": 3,
 	},
 	{
-		"city": "Athens",
+		"City": "Athens",
 		"year": 2004,
 		"players": 317,
 		"gold_medal": 3,
@@ -45,7 +49,7 @@ var d_oli = [
 		"bronze_medal": 6,
 	},
 	{
-		"city": "Sidney",
+		"City": "Sidney",
 		"year": 2000,
 		"players": 323,
 		"gold_medal": 3,
@@ -54,341 +58,205 @@ var d_oli = [
 	}
 ];
 
-//5.2: loadInitialData
-router.get("/loadInitialData", (req,res) =>{
-    db_oli.insert(d_oli);
-    console.log(`Datos anadidos: <${JSON.stringify(d_oli,null,2)}>`);
-    res.sendStatus(201); //Created
-});
+
+ module.exports.register = (app) => {
 
 
-router.get("/olimpics",(req,res)=>{
+	//OBTIENE TODO EL ARRAY
+    app.get(BASE_API_PATH, (req,res)=>{
+		var dbquery = {};
+        let offset = 0;
+        let limit = Number.MAX_SAFE_INTEGER;
+		var i = 0;
+        //PAGINACIÓN
+        if (req.query.offset) {
+            offset = parseInt(req.query.offset);
+            delete req.query.offset;
+        }
+        if (req.query.limit) {
+            limit = parseInt(req.query.limit);
+            delete req.query.limit;
+        }
 
-	var selectedOlimpics = [];
-	
-	db_oli.find({},(err, olimpicsFound)=> {
-		if(err) {
-			console.error("ERROR accesing to the DB in GET" + err);
-			res.sendStatus(500); // INTERNAL ERROR. F06.6
-		} else {
-
-			// Check if we want to search an specific budget or if we want all of them.
-			// In case of no filtering has been declared, all budgets will be sended. SEARCHS
-			if(Object.keys(req.query).length == 0) {
-				selectedOlimpics = olimpicsFound;
-
-				// PAGINATION F06.3
-			} else if(req.query.limit != undefined || req.query.offset != undefined) {
-				selectedOlimpics = paginationMaker(req, olimpicsFound);
-			}
-			  else {
-				selectedOlimpics = filterOfRequest(req, olimpicsFound);
-			}
-
-			// Get off the id.
-			selectedOlimpics.forEach((t)=>{
-				delete t._id;
-			});
-
-			if(selectedOlimpics.includes("ERROR")) {
-				res.sendStatus(400); // BAD REQUEST, the values of limit and offset are wrong. F06.6
-			} else if(selectedOlimpics.length == 0) {
-				console.error('No olimpic has been found');
-				res.sendStatus(404); // NOT FOUND F06.6
-			}
-			else {
-				// RETURNS AN ARRAY F06.11
-				console.log(`Es array?: <${Array.isArray(selectedOlimpics)}>`);
-				res.status(200).send(JSON.stringify(selectedOlimpics,null,2)); //OK F06.6
-			}
+        //BUSQUEDA
+        if(req.query.city){
+			 dbquery["city"]= req.query.city;
+			i++;
 		}
-	});
-});
-
-// Search method F06.2
-function filterOfRequest(req, olimpics) {
-	var res = [];
-
-	for(var olimpic of olimpics) {
-	var check = true;
-
-	// We mus check for each budget wich field is selected to comparate, if selected,
-	// the metod will check if the value of the budget on that field matches with the value on query.
-	if(req.query.city != undefined) {
-		if(olimpic.city != req.query.city)  {
-			check = false;
-		}
-	}
-	if(req.query.year != undefined) {
-		if(olimpic.year != req.query.year)  {
-			check = false;
-		}
-	}
-	if(req.query.players != undefined) {
-		if(olimpic.players != req.query.players)  {
-			check = false;
-		}
-	}
-	if(req.query.gold_medal != undefined) {
-		if(olimpic.gold_medal != req.query.gold_medal)  {
-			check = false;
-		}
-	}
-	if(req.query.silver_medal != undefined) {
-		if(olimpic.silver_medal != req.query.silver_medal)  {
-			check = false;
-		}
-	}
-	if(req.query.bronze_medal != undefined) {
-		if(olimpic.bronze_medal != req.query.bronze_medal)  {
-			check = false;
-		}
-	}
-
-	if(check) {
-		res.push(olimpic);
-	}
-	
-	}
-	return res;
-
-    /*
-        "city": "History",
-        "year": 2018,
-        "players": 193,
-        "gold_medal": 533,
-        "silver_medal":36.21,
-        "bronze_medal": "FHISTRY"
-    */
-}
-
-// Pagination method F06.3
-function paginationMaker(req, olimpics) {
-	var res = [];
-	const offset = req.query.offset;
-	const limit = req.query.limit;
-
-	if(limit < 1 || offset < 0 || offset > olimpics.length) {
-		console.error(`Error in pagination, you have exceded limits`);
-		res.push("ERROR");
-		return res;	
-	}
-	const startIndex = offset;
-	const endIndex = startIndex + limit;
-
-	res = olimpics.slice(startIndex, endIndex);
-	return res;
-}
-
-// POST TO RESOURCES LIST F04.1
-router.post("/olimpics", function(req,res){
-	var newOlimpic = req.body;
-
-	// WE SHOULD RETURN A 400 CODE WHEN WE DONT RECEIVE A JSON DATA WITH THE EXACTLY DATA STRUCTURE
-	// HOPED. F06.12
-	if(!isValidData(newOlimpic)) {
-		console.error("ERROR incorrect structure of entry data in POST");
-		res.sendStatus(400); // BAD REQUEST F06.6
-	} else {
-		console.log(`Element (olimpic) to be inserted: <${JSON.stringify(newOlimpic,null,2)}>`);
-
-		db_oli.find({bronze_medal: newOlimpic.bronze_medal},(err, olimpicsFound)=> {
-			if(err) {
-				console.error("ERROR accesing to the DB in POST" + err);
-				res.sendStatus(500); // INTERNAL ERROR F06.6
-			} else {
-
-				if (olimpicsFound.length == 0) {
-					console.log("New budget (this budget) can be inserted to the DB... inserting"
-					+ JSON.stringify(olimpicsFound,null,2));
-					db_oli.insert(newOlimpic);
-					console.log("New budget (this budget) inserted");
-					res.sendStatus(201); // CREATED F06.6
-				} else {
-					console.log("The budget already exists in the DB... Check conflicts");
-					res.sendStatus(409); // CONFLICT F06.6
-				}
-			}
-		});
-	}
-});
-
-// GET TO A RESOURCE F04.3
-router.get("/olimpics/:city/:year", function(req,res){
-	var Rcity = req.params.city;
-	var Ryear = parseInt(req.params.year);
-
-	console.log(`Searching for the budget with bronze_medal <${Rcity}> and year <${Ryear}>`);
-
-	// With both of the identificators F06.10
-	db_oli.find({$and: [{city: Rcity}, {year: Ryear}]},{},(err, olimpicsFound)=> {
-		if(err) {
-			console.error("ERROR accesing to the DB in GET TO A RESOURCE" + err);
-			res.sendStatus(500); // INTERNAL ERROR F06.6
-		} else {
-
-			if(olimpicsFound.length == 0) {
-				console.error('Any data has been found');
-				res.sendStatus(404); // NOT FOUND F06.6
-			} else {
-				// Get off the id.
-				olimpicsFound.forEach((t)=>{
-					delete t._id;
-				});
-				// RETURNS AN OBJECT, IN THIS CASE, THE ONLY OBJECT ON THE ARRAY F06.11
-				console.log(`Found the budget with bronze_medal <${Rcity}> and year <${Ryear}> type: <${typeof olimpicsFound[0]}>`);
-				res.status(200).send(JSON.stringify(olimpicsFound[0],null,2)); //OK F06.6 
-			}
-		}
-	});
-});
-
-// DELETE TO A RESOURCE F04.4
-router.delete("/olimpics/:city/:year", (req,res)=>{
-	var Dcity = req.params.city;
-	var Dyear = parseInt(req.params.year);
-
-	console.log(`Deleting the budget with bronze_medal <${Dcity}> and year <${Dyear}>...`);
-
-	// With both of the identificators F06.10
-	db_oli.remove({$and: [{city: Dcity}, {year: Dyear}]},(err, numOlimpicsRemoved)=>{
-		if(err) {
-			console.error("ERROR accesing to the DB in DELETE TO A RESOURCE" + err);
-			res.sendStatus(500); // INTERNAL ERROR F06.6
-		} else {
-
-			if(numOlimpicsRemoved == 0) {
-				console.error('Any data has been deleted');
-				res.sendStatus(404); // NOT FOUND F06.6
-			} else {
-				console.log(`The budget with bronze_medal <${Dcity}> and year <${Dyear}> has been deleted`)
-				res.sendStatus(200); // OK F06.6
-			}
-		}
-	});
-
-});
-
-// PUT TO A RESOURCE F04.5
-router.put("/olimpics/:city/:year", function(req,res){
-
-	var Ucity = req.params.city;
-	var Uyear = parseInt(req.params.year);
-	var updatedOlimpic = req.body;
-
-	// WE SHOULD RETURN A 400 CODE WHEN WE DONT RECEIVE A JSON DATA WITH THE EXACTLY DATA STRUCTURE
-	// HOPED. F06.12
-	if(!isValidData(updatedOlimpic)) {
-		console.error("ERROR incorrect structure of entry data in POST");
-		res.sendStatus(400); // BAD REQUEST F06.6
-	} else {
-		console.log(`Deleting the budget with bronze_medal <${Ucity}> and year <${Uyear}>...`);
-
-		// With both of the identificators F06.10
-         /*
-        "city": "History",
-        "year": 2018,
-        "players": 193,
-        "gold_medal": 533,
-        "silver_medal":36.21,
-        "bronze_medal": "FHISTRY"
-    */
-		db_oli.update({$and: [{city: Ucity}, {year: Uyear}]},{
-			city: updatedOlimpic.city,
-			year: updatedOlimpic.year,
-			players: updatedOlimpic.players,
-			gold_medal: updatedOlimpic.gold_medal,
-			silver_medal: updatedOlimpic.silver_medal,
-			bronze_medal: updatedOlimpic.bronze_medal },(err, numOlimpicsUpdated)=>{
-			
-
-				if(err) {
-					console.error("ERROR accesing to the DB in DELETE TO A RESOURCE" + err);
-					res.sendStatus(500); // INTERNAL ERROR F06.6
-				} else {
+        if(req.query.year){
+			dbquery["year"] = parseInt(req.query.year);
+			i++
+		} 
+        if(req.query.players){
+			dbquery["players"] = parseInt(req.query.players);
+			i++
+		} 
+        if(req.query.gold_medal){
+			dbquery["gold_medal"] = parseInt(req.query.gold_medal);
+			i++
+		} 
 		
-					if(numOlimpicsUpdated == 0) {
-						console.error('Any data has been updated');
-						res.sendStatus(404); // NOT FOUND F06.6
-					} else {
-						console.log(`The budget with bronze_medal <${Ucity}> and year <${Uyear}> has been updated`)
-						res.sendStatus(200); // OK F06.6
+        if(req.query.silver_medal){
+			dbquery["silver_medal"] = parseInt(req.query.silver_medal);
+			i++
+		} 
+		if(req.query.bronze_medal){
+			dbquery["bronze_medal"] = parseInt(req.query.bronze_medal);
+			i++
+		}
+	
+
+        dbOlimpic.find(dbquery).sort({city:1,year:-1}).skip(offset).limit(limit).exec((err, olimpic) =>{
+
+            
+			if(err){
+				res.sendStatus(500);
+			}else{
+				if(olimpic.length==0){
+					if(i==0){
+						res.send(JSON.stringify(olimpic,null,2));
+					}else{
+						console.log();
+						res.sendStatus(404);
 					}
 				}
-		});
-	}
-});
+				else{
+					olimpic.forEach((f)=>{
+                delete f._id
+            		});
+					if(olimpic.length==1){
+						res.send(JSON.stringify(olimpic[0],null,2));
+					}
+					else{
+						res.send(JSON.stringify(olimpic,null,2));
+					}
+					
+				
+					
+				}
+			}
+           
+        });
 
+    });
 
-// POST TO A RESOURCE F04.6 SHOULD RETURN AN ERROR.
-router.post("/olimpics/:city/:year", function(req,res){
-	console.log("ERROR, it´s not allowed to make a post to a resource");
-	res.sendStatus(405); // NOT ALLOWED F06.6
-});
+	//LOAD INITIAL DATA
+    app.get(BASE_API_PATH+"/loadInitialData", (req, res)=>{
+		dbOlimpic.insert(olimpicInitialData);
 
-// PUT TO THE RESOURCES LIST F04.7 SHOULD RETURN AN ERROR.
-router.put("/olimpics", function(req,res){
-	console.log("ERROR, it´s not allowed to make a put to the resource list");
-	res.sendStatus(405); // NOT ALLOWED F06.6
-});
+        res.send("Datos cargados");
+    });
 
-// DELETE TO A RESOURCE F04.8
-router.delete("/olimpics", (req,res)=>{
-
-	console.log(`Deleting all the budgets...`);
-
-	db_oli.remove({},{multi: true},(err, numOlimpicsRemoved)=>{
-		if(err) {
-			console.error("ERROR accesing to the DB in DELETE TO A RESOURCE" + err);
-			res.sendStatus(500); // INTERNAL ERROR F06.6
-		} else {
-
-			if(numOlimpicsRemoved == 0) {
-				console.error('Any data has been deleted');
-				res.sendStatus(404); // NOT FOUND F06.6
-			} else {
-				console.log(`All the budgets has been deleted, a total of <${numOlimpicsRemoved}>`)
-				res.sendStatus(200); // OK F06.6
+	  
+	
+    //SUBE UN RECURSO
+    app.post(BASE_API_PATH, (req,res)=>{
+        var newOlimpic = req.body;
+       
+        dbOlimpic.find({$and: [{city: newOlimpic.city}, {year: newOlimpic.year}, {players: newOlimpic.players}]}, (err, olimpic_size)=>{
+		if(err){
+			console.error("ERROR accessing 	DB in GET");
+			res.sendStatus(500);
+		}
+		else{
+			console.log(Object.keys(newOlimpic));
+			if(olimpic_size.length==0){
+			
+				if((!newOlimpic.city|!newOlimpic.year|!newOlimpic.players|!newOlimpic.gold_medal|!newOlimpic.silver_medal|
+					!newOlimpic.bronze_medal) || Object.keys(newOlimpic).length!=6 ){
+					res.sendStatus(400);
+					
+					
+				}else{
+					console.log("Inserting new olimpic_size in DB: "+ JSON.stringify(newOlimpic, null,2));
+					dbOlimpic.insert(newOlimpic);
+					res.sendStatus(201); //CREATED
+				}
+				
+			}
+			else{
+				console.log();
+				res.sendStatus(409); //CONFLICT
 			}
 		}
 	});
-});
 
-// WE SHOULD RETURN A 400 CODE WHEN WE DONT RECEIVE A JSON DATA WITH THE EXACTLY DATA STRUCTURE
-// HOPED. F06.12
-function isValidData(obj){
-    if(!Array.isArray(obj)) return validDataEntry(obj);
+    });
 
-    for(let element in obj){
-        if(!validDataEntry(obj[element])) return false;
-    }
+    	 //BORRAR RECURSO
+         app.delete(BASE_API_PATH+"/:city/:year/:players", (req,res)=>{
+            var cityD = req.params.city;
+            var yearD = parseInt(req.params.year);
+			var playersD = parseInt(req.params.players);
+            dbOlimpic.remove({$and:[{ city: cityD}, {year: yearD }, { players: playersD }]}, {}, (err, numOlimpicRemoved)=>{
+            if (err){
+                console.error("ERROR deleting DB olimpic_size in DELETE: "+err);
+                res.sendStatus(500);
+            }else{
+                
+                if(numOlimpicRemoved==0){
+                    res.sendStatus(404);
+                }else{
+                    res.sendStatus(200);
+                }
+            }
+        });
+            
+        });
+           //ACTUALIZA RECURSO
+    app.put(BASE_API_PATH+"/:city/:year/:players",(req,res)=>{
+		var cityD = req.params.city;
+		var yearD = parseInt(req.params.year);
+		var playersD = parseInt(req.params.players);
+		var update = req.body;
+		dbOlimpic.find({$and:[{ city: cityD}, {year: yearD }, {players: playersD}]}, (err, olimpic)=>{
+			if (err){
+				console.error("ERROR accessing 	DB in GET");
+					res.sendStatus(500);
+			}
+			else{
+				if((req.body.city!=cityD|req.body.year!=yearD|req.body.players!=playersD)){
+					res.sendStatus(409);
+				}else if(!update.city|!update.year|!update.players|!update.gold_medal|!update.silver_medal|!update.bronze_medal | Object.keys(update).length != 6){
+					res.sendStatus(400);
+				}else{
+					dbOlimpic.update({$and:[{ city: cityD}, {year: yearD }, {players: playersD}]}, {$set: update}, {},function(err, updateOlimpic) {
+						if (err) {
+							console.error("ERROR updating DB olimpic_size in PUT: "+err);
+						}else{
+						res.sendStatus(200);
+					
+						}
+					});
+				}
+			}
+		});
+	});
+		
+      //ERROR AL POST EN UN RECURSO
+      app.post(BASE_API_PATH+"/:city/:year/:players", (req,res)=>{
 
-    return true;
-}
+        res.sendStatus(405);
+    });
 
-function validDataEntry(obj){
-    if(Object.keys(obj).length !== 6) return false;
-    if (!obj["city"]) return false;
-	if (!obj.city) return false;
-	if (!obj["year"]) return false;
-    if (!obj.year) return false;
-	if (!obj["players"]) return false;
-    if (!obj.players) return false;
-	if (!obj["gold_medal"]) return false;
-    if (!obj.gold_medal) return false;
-    if (!obj["silver_medal"]) return false;
-	if (!obj.silver_medal) return false;
-    if (!obj["bronze_medal"]) return false;
-	if (!obj.bronze_medal) return false;
-    return true;
 
-     /*
-        "city": "Pekin",
-		"year": 2008,
-		"players": 286,
-		"gold_medal": 5,
-		"silver_medal": 11,
-		"bronze_medal": 3,
-    */
-}
-module.exports = router;
+    //ERROR AL ACTUALIZAR UN ARRAY
+    app.put(BASE_API_PATH, (req,res)=>{
+
+        res.sendStatus(405);
+    });
+	//BORRAR TODO
+	app.delete(BASE_API_PATH, (req,res)=>{
+		dbOlimpic.remove({}, {multi:true}, (err, numOlimpicRemoved)=>{
+		if (err){
+			console.error("ERROR deleting DB olimpic_size in DELETE: "+err);
+		}else{
+			if(numOlimpicRemoved==0){
+				res.sendStatus(404);
+			}else{
+				res.sendStatus(200);
+			}
+		}
+	});
+	});
+ };
