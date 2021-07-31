@@ -65,7 +65,7 @@ var olimpicInitialData = [
 		var cityD = req.params.city;
 		var yearD = parseInt(req.params.year);
 		var playersD = parseInt(req.params.players);
-		dbFood.find({$and:[{ city: cityD}, {year: yearD }, {players: playersD}]}, (err, olimpic_size)=>{
+		dbOlimpic.find({$and:[{ city: cityD}, {year: yearD }, {players: playersD}]}, (err, olimpic_size)=>{
 			if (err){
 				console.error("ERROR accessing 	DB in GET");
 					res.sendStatus(500);
