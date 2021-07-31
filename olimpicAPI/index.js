@@ -188,38 +188,32 @@ function hasNumbers(t){
     
     
     app.put(BASE_API_PATH+"/:city/:year",(req,res)=>{
-        var cityD = req.params.city;
-		var yearD =  parseInt(req.params.year);
+		var cityD = req.params.city;
+		var yearD = parseInt(req.params.year);
 		var update = req.body;
-		if (!update.city
-            || !update.year
-            || !update.gold_medal
-            || !update.silver_medal
-            || !update.bronze_medal
-            || update.city != cityD
-            || update.year != yearD
-            || Object.keys(update).length != 5) {
-
-            console.log("Invalid field update")
-            res.sendStatus(409);
-        } else {
-		db.update({city: cityD, year: yearD}, {$set: {city: update.city, year: update.year,  gold_medal: update.gold_medal, silver_medal: update.silver_medal, bronze_medal: update.bronze_medal}}, {},(err, updateOlimpic) => {
-				if (err) {
-					console.error("ERROR accesing DB in PUT");
+		db.find({$and:[{ city: cityD}, {year: yearD }]}, (err, olimpic)=>{
+			if (err){
+				console.error("ERROR accessing 	DB in GET");
 					res.sendStatus(500);
+			}
+			else{
+				if((req.body.city!=cityD|req.body.year!=yearD)){
+					res.sendStatus(409);
+				}else if(!update.city|!update.year|!update.gold_medal|!update.silver_medal|!update.bronze_medal |Object.keys(update).length != 5){
+					res.sendStatus(400);
 				}else{
-					if (updateOlimpic == 0) {
-                        console.error("No data found");
-                        res.sendStatus(404);
-                    } else {
-                        console.log("Updated fields")
-                        res.sendStatus(200);
-                    }
+					db.update({$and:[{ city: cityD}, {year: yearD }]}, {$set: update}, {},function(err, updateOlimpic) {
+						if (err) {
+							console.error("ERROR updating DB food_consumption in PUT: "+err);
+						}else{
+						res.sendStatus(200);
+					
+						}
+					});
 				}
-			
-			});
-		}
-    });
+			}
+		});
+	});
     
     app.post(BASE_API_PATH+"/:city/:year", (req,res)=>{
     
