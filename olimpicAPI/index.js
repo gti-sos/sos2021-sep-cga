@@ -260,22 +260,35 @@ var olimpicInitialData = [
 	});
 	});
 
-	app.get(BASE_API_PATH + "/:city/:year", (req, res) => {
-		var city = req.params.city;
-		var year = parseInt(req.params.year);
-	 
-		db.find({ "city": city, "year": year }).exec((err, param) => {
-		 if (param.length == 1) {
-			 delete param[0]._id;
-	   res.send(JSON.stringify(param[0], null, 2));
-	   console.log("/GET - Recurso Específico /city/year: " + JSON.stringify(param[0]), null, 2);
-	 }
-	 else {
-	   res.sendStatus(404, "Not found");
-	 }
-	 });
-	 
-	 });
+	router.get("/:city/:year", function(req,res){
+		var Rcity = req.params.city;
+		var Ryear = parseInt(req.params.year);
+	
+		console.log(`Searching for the budget with city <${Rcity}> and year <${Ryear}>`);
+	
+		// With both of the identificators F06.10
+		dbOlimpic.find({$and: [{city: Rcity}, {year: Ryear}]},{},(err, olimpicsFound)=> {
+			if(err) {
+				console.error("ERROR accesing to the DB in GET TO A RESOURCE" + err);
+				res.sendStatus(500); // INTERNAL ERROR F06.6
+			} else {
+	
+				if(olimpicsFound.length == 0) {
+					console.error('Any data has been found');
+					res.sendStatus(404); // NOT FOUND F06.6
+				} else {
+					// Get off the id.
+					olimpicsFound.forEach((t)=>{
+						delete t._id;
+					});
+					// RETURNS AN OBJECT, IN THIS CASE, THE ONLY OBJECT ON THE ARRAY F06.11
+					console.log(`Found the budget with city <${Rcity}> and year <${Ryear}> type: <${typeof olimpicsFound[0]}>`);
+					res.status(200).send(JSON.stringify(olimpicsFound[0],null,2)); //OK F06.6 
+				}
+			}
+		});
+	});
+	
  };
 
  
