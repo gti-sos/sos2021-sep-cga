@@ -253,7 +253,7 @@ let filterOlimpic= {
    						 
 					<CustomInput type="checkbox" id="filtroCiudad" label="Ciudad" ><input bind:value="{filterOlimpic.city}"></CustomInput>
 					<CustomInput type="checkbox" id="filtroAnyoFrom" label="Desde el año:" ><input type=number bind:value="{filterOlimpic.fromyear}"></CustomInput>
-					<CustomInput type="checkbox" id="filtroAnyoTo" label="Antes el año:" ><input type=number bind:value="{filterOlimpic.toyear}"></CustomInput>
+					<CustomInput type="checkbox" id="filtroAnyoTo" label="Hasta el año:" ><input type=number bind:value="{filterOlimpic.toyear}"></CustomInput>
 					<CustomInput type="checkbox" id="filtroOro" label="Medallas de oro" ><input type=number bind:value="{filterOlimpic.gold_medal}"></CustomInput>
 					<CustomInput type="checkbox" id="filtroPlata" label="Medallas de plata" ><input type=number bind:value="{filterOlimpic.silver_medal}"></CustomInput>
 					<CustomInput type="checkbox" id="filtroBronce" label="Medallas de bronce" ><input type=number bind:value="{filterOlimpic.bronze_medal}"></CustomInput>

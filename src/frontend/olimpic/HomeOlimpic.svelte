@@ -26,11 +26,11 @@
 	</h2>
 	<Breadcrumb>
   				<BreadcrumbItem><a href="https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats">Estadísticas de medallas</a></BreadcrumbItem>
-				<BreadcrumbItem active>Desarrollado por Almudena González López de Letona</BreadcrumbItem>
+				<BreadcrumbItem active>Desarrollado por Carlos González Arenas</BreadcrumbItem>
 	</Breadcrumb>
 	<Breadcrumb>
                 <BreadcrumbItem><a href="https://sos2021-sep-cga.herokuapp.com/api/v2/olimpic-stats">Estadísticas de medallas</a></BreadcrumbItem>
-                <BreadcrumbItem active>Desarrollado por Almudena González López de Letona</BreadcrumbItem>
+                <BreadcrumbItem active>Desarrollado por Carlos González Arenas</BreadcrumbItem>
 	</Breadcrumb>
 			
 	<h2>
