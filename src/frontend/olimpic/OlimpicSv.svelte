@@ -60,8 +60,7 @@
   	}
 let filterOlimpic= {
 		city:"",
-		fromyear:0,
-		toyear:0,
+		year:0,
 		gold_medal: 0,
 		silver_medal:0,
 		bronze_medal:0
@@ -75,26 +74,16 @@ let filterOlimpic= {
 		
 		if (document.getElementById('filtroCiudad').checked){
             dbquery += `city=${filterOlimpic.city}`;
-			if(document.getElementById('filtroAnyoFrom').checked || document.getElementById('filtroAnyoTo').checked || document.getElementById('filtroOro').checked || document.getElementById('filtroPlata').checked || document.getElementById('filtroBronce').checked){
+			if(document.getElementById('filtroAnyo').checked || document.getElementById('filtroOro').checked || document.getElementById('filtroPlata').checked || document.getElementById('filtroBronce').checked){
 			dbquery +=`&`;
 			}
 		}
 		
-		console.log("FROM YEAR  :" + filterOlimpic.fromyear);
-		if (document.getElementById('filtroAnyoFrom').checked) {
+
+		if (document.getElementById('filtroAnyo').checked) {
             dbquery += `year=${filterOlimpic.fromyear}`;
-			if(document.getElementById('filtroAnyoTo').checked 
-			|| document.getElementById('filtroOro').checked 
+			if(document.getElementById('filtroOro').checked 
 			|| document.getElementById('filtroPlata').checked || document.getElementById('filtroBronce').checked ){
-				dbquery +=`&`;
-			}
-			
-		}
-		
-		if (document.getElementById('filtroAnyoTo').checked) {
-            dbquery += `toyear=${filterOlimpic.toyear}`;
-			if(document.getElementById('filtroOro').checked || document.getElementById('filtroPlata').checked 
-			|| document.getElementById('filtroBronce').checked ){
 				dbquery +=`&`;
 			}
 			
@@ -256,8 +245,7 @@ let filterOlimpic= {
   				<FormGroup>
    						 
 					<CustomInput type="checkbox" id="filtroCiudad" label="Ciudad" ><input bind:value="{filterOlimpic.city}"></CustomInput>
-					<CustomInput type="checkbox" id="filtroAnyoFrom" label="Desde el año:" ><input type=number bind:value="{filterOlimpic.fromyear}"></CustomInput>
-					<CustomInput type="checkbox" id="filtroAnyoTo" label="Hasta el año:" ><input type=number bind:value="{filterOlimpic.toyear}"></CustomInput>
+					<CustomInput type="checkbox" id="filtroAnyo" label="Año:" ><input type=number bind:value="{filterOlimpic.year}"></CustomInput>
 					<CustomInput type="checkbox" id="filtroOro" label="Medallas de oro" ><input type=number bind:value="{filterOlimpic.gold_medal}"></CustomInput>
 					<CustomInput type="checkbox" id="filtroPlata" label="Medallas de plata" ><input type=number bind:value="{filterOlimpic.silver_medal}"></CustomInput>
 					<CustomInput type="checkbox" id="filtroBronce" label="Medallas de bronce" ><input type=number bind:value="{filterOlimpic.bronze_medal}"></CustomInput>
