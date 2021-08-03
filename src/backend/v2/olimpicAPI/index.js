@@ -110,6 +110,62 @@ var olimpicInitialData = [
 		"gold_medal": 0,
 		"silver_medal": 0,
 		"bronze_medal": 1,
+	},
+	{
+		"city": "Melbourne",
+		"year": 1956,
+		"gold_medal": 0,
+		"silver_medal": 0,
+		"bronze_medal": 0,
+	},
+	{
+		"city": "Helsinki",
+		"year": 1952,
+		"gold_medal": 0,
+		"silver_medal": 1,
+		"bronze_medal": 0,
+	},
+	{
+		"city": "London",
+		"year": 1948,
+		"gold_medal": 0,
+		"silver_medal": 1,
+		"bronze_medal": 0,
+	},
+	{
+		"city": "Los Angeles",
+		"year": 1932,
+		"gold_medal": 0,
+		"silver_medal": 0,
+		"bronze_medal": 1,
+	},
+	{
+		"city": "Amsterdam",
+		"year": 1928,
+		"gold_medal": 1,
+		"silver_medal": 0,
+		"bronze_medal": 0,
+	},
+	{
+		"city": "Paris",
+		"year": 1924,
+		"gold_medal": 0,
+		"silver_medal": 0,
+		"bronze_medal": 0,
+	},
+	{
+		"city": "Amberes",
+		"year": 1920,
+		"gold_medal": 0,
+		"silver_medal": 2,
+		"bronze_medal": 0,
+	},
+	{
+		"city": "Paris",
+		"year": 1900,
+		"gold_medal": 1,
+		"silver_medal": 0,
+		"bronze_medal": 0,
 	}
 ];
 
