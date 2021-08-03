@@ -80,9 +80,12 @@ let filterOlimpic= {
 			}
 		}
 		
+		console.log("FROM YEAR  :" + filterOlimpic.fromyear);
 		if (document.getElementById('filtroAnyoFrom').checked) {
             dbquery += `fromyear=${filterOlimpic.fromyear}`;
-			if(document.getElementById('filtroAnyoTo').checked || document.getElementById('filtroOro').checked || document.getElementById('filtroPlata').checked || document.getElementById('filtroBronce').checked ){
+			if(document.getElementById('filtroAnyoTo').checked 
+			|| document.getElementById('filtroOro').checked 
+			|| document.getElementById('filtroPlata').checked || document.getElementById('filtroBronce').checked ){
 				dbquery +=`&`;
 			}
 			
@@ -90,7 +93,8 @@ let filterOlimpic= {
 		
 		if (document.getElementById('filtroAnyoTo').checked) {
             dbquery += `toyear=${filterOlimpic.toyear}`;
-			if(document.getElementById('filtroOro').checked || document.getElementById('filtroPlata').checked || document.getElementById('filtroBronce').checked ){
+			if(document.getElementById('filtroOro').checked || document.getElementById('filtroPlata').checked 
+			|| document.getElementById('filtroBronce').checked ){
 				dbquery +=`&`;
 			}
 			
