@@ -19,13 +19,13 @@
 class="fixed-top">
   <NavbarBrand href="/" class="mr-auto"><strong>sos2021-sep-cga</strong></NavbarBrand>
   <NavbarToggler on:click={toggleNav} className="mr-2" />
-  <Collapse {isOpen} navbar>
-   <!--- <Nav navbar>
+  <!---<Collapse {isOpen} navbar>
+    <Nav navbar>
       <NavItem>
         <NavLink href="#/olimpic-stats">Documentación</NavLink>
       </NavItem>
-    </Nav> -->
-  </Collapse>
+    </Nav> 
+  </Collapse> -->
 </Navbar>
 
 </main>
