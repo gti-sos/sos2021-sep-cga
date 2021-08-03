@@ -11,15 +11,16 @@
 				<div class="col-md-10">
 
 					<!-- Heading -->
-					<h2 class="display-4 font-weight-bold white-text pt-5 mb-2" style="color: white;">sos2021-sep-cga</h2>
+					<!--<h2 class="display-4 font-weight-bold white-text pt-5 mb-2" style="color: white;">sos2021-sep-cga</h2> -->
 
 					<!-- Divider -->
-					<hr class="hr-light">
+					<!--<hr class="hr-light"> -->
 
 					<!-- Description -->
-					<div style="background-color:white; border-radius:5px; max-width:180px; max-height: 50px; margin: auto;">
-						<h4><a href="#/info">Informacion</a></h4>
-					</div>
+					<!-- <div style="background-color:white; border-radius:5px; max-width:180px; max-height: 50px; margin: auto;">
+						<h1><a href="#/info">Informacion</a></h1>
+					</div> -->
+                    <h1><a href="#/info">Informacion</a></h1>
 
 				</div>
 
