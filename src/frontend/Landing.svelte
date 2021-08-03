@@ -11,7 +11,7 @@
 				<div class="col-md-10">
 
 					<!-- Heading -->
-					<h2 class="display-4 font-weight-bold white-text pt-5 mb-2" style="color: white;">SOS2021-10</h2>
+					<h2 class="display-4 font-weight-bold white-text pt-5 mb-2" style="color: white;">sos2021-sep-cga</h2>
 
 					<!-- Divider -->
 					<hr class="hr-light">
@@ -30,7 +30,7 @@
 <style>
 	main	{
 		padding-top: 15em;
-		background: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20%283%29.jpg")no-repeat center center fixed;
+		background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Olympic_flag.svg/1200px-Olympic_flag.svg.png")no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
