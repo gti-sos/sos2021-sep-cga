@@ -22,7 +22,7 @@ class="fixed-top">
   <Collapse {isOpen} navbar>
     <Nav navbar>
       <NavItem>
-        <NavLink href="#/olimpic-stats">Estadísticas de medallas de España</NavLink>
+        <NavLink href="#/olimpic-stats">Documentación</NavLink>
       </NavItem>
     </Nav>
   </Collapse>

@@ -73,7 +73,7 @@
 	</h2>
 	<ul>
 		<Breadcrumb class="peque">
-  			<BreadcrumbItem><a href="https://sos2021-sep-cga.herokuapp.com/api/v2/olimpic-stats">Estaditicas de medallas</a></BreadcrumbItem>
+  			<BreadcrumbItem><a href="https://sos2021-sep-cga.herokuapp.com/api/v2/olimpic-stats">Estadísticas de medallas</a></BreadcrumbItem>
 			<BreadcrumbItem active>Carlos González Arenas</BreadcrumbItem>
 			
 		</Breadcrumb>
@@ -85,7 +85,7 @@
 	</h2>
 	<ul>
 		<Breadcrumb class="peque">
-  			<BreadcrumbItem active>Estaditicas de medallas</BreadcrumbItem>
+  			<BreadcrumbItem active>Estadísticas de medallas</BreadcrumbItem>
   			<BreadcrumbItem><a href="https://documenter.getpostman.com/view/12390654/TzseKmsN">V1</a></BreadcrumbItem>
 			
 		</Breadcrumb>
