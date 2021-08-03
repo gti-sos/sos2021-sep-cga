@@ -46,7 +46,7 @@
 		<strong>sos2021-sep-cga</strong>
 	</h1>
 	<h2>
-		Integrantes:
+		Integrante:
 	</h2>
 	<ul>
 		<Breadcrumb class="peque">
