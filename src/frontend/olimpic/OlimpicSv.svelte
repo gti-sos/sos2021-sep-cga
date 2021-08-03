@@ -161,7 +161,7 @@ let filterOlimpic= {
       }
     } 
     
-	async function insertolimpic() {
+	async function insertOlimpic() {
     	console.log("Inserting data "+ JSON.stringify(newOlimpic));
    		
 		const res = await fetch(BASE_CONTACT_API_PATH +"/olimpic-stats",
@@ -292,7 +292,7 @@ let filterOlimpic= {
 				<td><input type=number bind:value="{newOlimpic.gold_medal}"></td>
 				<td><input type=number bind:value="{newOlimpic.silver_medal}"></td>
 				<td><input type=number bind:value="{newOlimpic.bronze_medal}"></td>
-				<td><Button on:click={insertolimpic}>Insertar</Button></td>
+				<td><Button on:click={insertOlimpic}>Insertar</Button></td>
 			</tr>
 			{#each olimpic as obe}
 				<tr>
