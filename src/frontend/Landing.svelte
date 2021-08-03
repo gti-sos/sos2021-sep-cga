@@ -8,7 +8,7 @@
 		
 			<div class="row d-flex justify-content-center text-center">
 
-				<div class="col-md-5">
+				<div class="col-md-10">
 
 					<!-- Heading -->
 					<!--<h2 class="display-4 font-weight-bold white-text pt-5 mb-2" style="color: white;">sos2021-sep-cga</h2> -->
