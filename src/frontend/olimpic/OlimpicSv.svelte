@@ -81,7 +81,7 @@ let filterOlimpic= {
 		
 
 		if (document.getElementById('filtroAnyo').checked) {
-            dbquery += `year=${filterOlimpic.fromyear}`;
+            dbquery += `year=${filterOlimpic.year}`;
 			if(document.getElementById('filtroOro').checked 
 			|| document.getElementById('filtroPlata').checked || document.getElementById('filtroBronce').checked ){
 				dbquery +=`&`;
