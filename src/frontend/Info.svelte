@@ -43,7 +43,7 @@
 
 	<div class="position">
 	<h1>
-		<strong>SOS2021-10</strong>
+		<strong>sos2021-sep-cga</strong>
 	</h1>
 	<h2>
 		Integrantes:
