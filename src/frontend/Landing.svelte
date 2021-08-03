@@ -30,7 +30,7 @@
 <style>
 	main	{
 		padding-top: 15em;
-		background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Olympic_flag.svg/1200px-Olympic_flag.svg.png")no-repeat center center fixed;
+		/* background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Olympic_flag.svg/1200px-Olympic_flag.svg.png")no-repeat center center fixed; */
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
