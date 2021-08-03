@@ -133,7 +133,7 @@ function hasNumbers(t){
 	 
     app.post(BASE_API_PATH, (req,res)=>{
         var newOlimpic = req.body;
-        console.log(`Nuevo objeto en obesity: <${JSON.stringify(newOlimpic,null,2)}>`);
+        console.log(`Nuevo objeto en olimpic: <${JSON.stringify(newOlimpic,null,2)}>`);
         db.find({$and: [{city: newOlimpic.city}, {year: newOlimpic.year}]}, (err, olimpicInDB)=>{
 		if(err){
 			console.error("ERROR accessing 	DB in POST");
@@ -235,7 +235,7 @@ function hasNumbers(t){
 			res.sendStatus(500);
 		}else{
 			if(numOlimpicRemoved==0){
-				console.error("ERROR obesity-stats not found");
+				console.error("ERROR olimpic-stats not found");
 				res.sendStatus(404);
 			}else{
 				res.sendStatus(200);
