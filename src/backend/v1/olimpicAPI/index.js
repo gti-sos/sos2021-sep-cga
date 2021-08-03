@@ -193,9 +193,6 @@ function hasNumbers(t){
 		var update = req.body;
 		if (!update.city
             || !update.year
-            || !update.gold_medal
-            || !update.silver_medal
-            || !update.bronze_medal
             || Object.keys(update).length != 5) {
 
             console.log("Invalid field update")
