@@ -68,6 +68,9 @@
 	<p>
 		<strong>URL: </strong><a href="https://sos2021-sep-cga.herokuapp.com/">https://sos2021-sep-cga.herokuapp.com/</a> 
 	</p>
+
+	<Button  color="secondary" onclick="window.location.href='#/analytics'">Grafica conjunta</Button>
+	<Button  color="secondary" onclick="window.location.href='#/integrations'">Integraciones</Button>
 	<h2>
 		APIs desarrolladas:
 	</h2>
