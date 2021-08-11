@@ -46,7 +46,7 @@
     
     <main>
         <Header/>
-        <font face="Comic Sans MS,arial,verdana">Gráfico que muestra las medallas de Barcelona '92</font>
+        <font FACE="impact" SIZE=6 COLOR="red">Gráfico que muestra las medallas de Barcelona '92</font>
         <body>
             <img src="" id="graph"/>
         </body>
