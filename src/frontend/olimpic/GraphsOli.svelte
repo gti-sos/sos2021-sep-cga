@@ -17,9 +17,9 @@
             console.log(MyData);
             console.log(JSON.stringify(MyData, null, 2))
             MyData.forEach(data => {
-                ejeX.push(data["country"] + "-" + data.year);
-                medallasOro.push(data.medallasOro);
-                medallasPlata.push(data.medallasPlata);
+                ejeX.push(data["city"] + "-" + data.year);
+                medallasOro.push(data.gold_medal);
+                medallasPlata.push(data.silver_medal);
             });
         }else{
             console.log("Error loading cuts");
