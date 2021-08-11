@@ -6,6 +6,7 @@
 	import Landing from './Landing.svelte';
 	import HomeOlimpic from './olimpic/HomeOlimpic.svelte';
 	import EditOli from './olimpic/EditOli.svelte';
+	import GraphsOli from './olimpic/GraphsOli.svelte';
 	
 	
 	const routes = {
@@ -13,6 +14,7 @@
 		"/info": Info,
 		"/olimpic-stats": HomeOlimpic,
 		"/olimpic-stats/:city/:year": EditOli,
+		"/graphs": GraphsOli,
 		"*": NotFound
 	}
 	

@@ -22,6 +22,7 @@
 					</div> -->
 					<h1><a href="#/olimpic-stats">Documentación</h1>
 					<h1><a href="#/info">Información</a></h1>
+					<h1><a href="#/graphs">Gráficas de mi API</a></h1>
 
 				</div>
 
