@@ -44,29 +44,10 @@
     load_api_graph()
     </script>
     
-    <main>
+<main>
         <Header/>
         <br>
         <br>
         <Button outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
-            <div style="margin:auto;"> 
-            <figure class="highcharts-figure">
-                <div id="container"></div>
-                <p class="highcharts-description">
-                   Gráfico de barras sobre las medallas de España en los Juegos Olímpicos.
-                </p>
-            </figure>  
-        </main>
-        
-        
-        <style>
-            .highcharts-figure {
-              min-width: 100%;
-              max-width:100%;
-              margin: 1em auto;
-            }
-            #container {
-              height: 400px;
-            }
-            
-        </style>
+
+</main>
