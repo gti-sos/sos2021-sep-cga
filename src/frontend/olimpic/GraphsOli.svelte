@@ -5,7 +5,7 @@
     } from "svelte";
 
     let MyData = [];
-    let ejeX = [];
+    let Yaxis = [];
     let medallasOro = [];
     let medallasPlata = [];
 
@@ -17,7 +17,7 @@
             console.log(MyData);
             console.log(JSON.stringify(MyData, null, 2))
             MyData.forEach(data => {
-                ejeX.push(data["city"] + "-" + data.year);
+                Yaxis.push(data["city"] + "-" + data.year);
                 medallasOro.push(data.gold_medal);
                 medallasPlata.push(data.silver_medal);
             });
@@ -29,12 +29,12 @@
         type: 'bar'
     },
     title: {
-        text: 'Notas de corte del grado de Ingeniería Informática según el año'
+        text: 'Medallas de España en los Juegos Olímpicos'
     },
     xAxis: {
-        categories: ejeX,
+        categories: Yaxis,
         title: {
-            text: 'Grado-año'
+            text: 'Ciudad-Año'
         }
     },
     yAxis: {
