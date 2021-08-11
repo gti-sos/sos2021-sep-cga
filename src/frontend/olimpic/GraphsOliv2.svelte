@@ -44,10 +44,18 @@
     load_api_graph()
     </script>
     
-<main>
+    <main>
         <Header/>
-        <br>
-        <br>
-        <Button outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
-
-</main>
+        <h1>Gráfico que muestra las medallas de Barcelona '92</h1>
+        <body>
+            <img src="" id="graph"/>
+        </body>
+    
+    </main>
+    
+    <svelte:head>
+    
+    </svelte:head>
+    
+    <style>
+    </style>
