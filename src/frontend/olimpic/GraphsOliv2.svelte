@@ -46,7 +46,7 @@
     
     <main>
         <Header/>
-        <h1>Gráfico que muestra las medallas de Barcelona '92</h1>
+        <font face="Comic Sans MS,arial,verdana">Gráfico que muestra las medallas de Barcelona '92</font>
         <body>
             <img src="" id="graph"/>
         </body>
