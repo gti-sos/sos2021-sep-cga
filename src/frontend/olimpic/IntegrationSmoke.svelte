@@ -1,4 +1,11 @@
 <script>
+
+    import Header from '../Header.svelte';
+    import Button from "sveltestrap/src/Button.svelte";
+    import {
+        onMount
+    } from "svelte";
+
     async function loadData() {
         let res1 = await fetch('https://sos2021-11.herokuapp.com/api/v2/smoking_stats/');
         await fetch('https://sos2021-11.herokuapp.com/api/v2/smoking_stats/loadInitialData');
@@ -74,7 +81,13 @@ let url = "https://quickchart.io/chart?c="+JSON.stringify(c)
 </script>
 
 <main>
-    <h1>Gráfico que muestra el porcentaje de fumadores en España y la nota de corte de Ingeniería informática en la US en el año 2017</h1>
+  <Header/>
+  <br>
+  <br>
+  <Button outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
+  <br>
+  <br>
+  <h1>Gráfico que muestra las medallas de Barcelona '92</h1>
     <body>
         <img src="" id="graph"/>
     </body>
