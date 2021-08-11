@@ -9,7 +9,7 @@
 	import GraphsOli from './olimpic/GraphsOli.svelte';
 	import GraphsOliv2 from './olimpic/GraphsOliv2.svelte';
 	import Integrations from './olimpic/Integrations.svelte';
-	import IntegrationFoodConsumption from './olimpic/IntegrationFoodConsumption.svelte';
+	import IntegrationSmoke from './olimpic/IntegrationSmoke.svelte';
 	
 	
 	const routes = {
@@ -20,7 +20,7 @@
 		"/olimpic-stats/graphs": GraphsOli,
 		"/olimpic-stats/graphsv2": GraphsOliv2,
 		"/integrations": Integrations,
-		"/olimpic-stats/foodconsumption-stats": IntegrationFoodConsumption,
+		"/olimpic-stats/foodconsumption-stats": IntegrationSmoke,
 		"*": NotFound
 	}
 	

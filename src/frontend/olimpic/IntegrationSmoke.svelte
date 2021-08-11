@@ -25,7 +25,7 @@
         res_data2.forEach((data) => {
             if(data.year == 2016){
                 olimpic.push(data.gold_medal);
-                total_label.push(data.city+"-Nota de corte");
+                total_label.push(data.city+"-Número de medallas de Oro");
             }
         })
         
