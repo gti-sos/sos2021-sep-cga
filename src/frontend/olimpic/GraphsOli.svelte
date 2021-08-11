@@ -1,10 +1,10 @@
 <main>
-	<h2>Página de gráficas de la API de fraferbla1</h2>
+	<h2>Página de gráficas de la API de cargonare1</h2>
     <br>
 
-    <a id= "link-to-cutsgraph" href="/fraferbla1/#/cuts/graficas">Gráfica con la librería Highcharts</a>
+    <a id= "link-to-cutsgraph" href="#/olimpic-stats/graphs">Gráfica con la librería Highcharts</a>
     <br>
-    <a href="/fraferbla1/#/cuts/graficav2">Gráfica con la librería Quickchart</a>
+    <a href="#/olimpic-stats/graphsv2">Gráfica con la librería Quickchart</a>
     <br>
 
 </main>
