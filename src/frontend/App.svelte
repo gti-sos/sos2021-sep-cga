@@ -8,7 +8,7 @@
 	import EditOli from './olimpic/EditOli.svelte';
 	import GraphsOli from './olimpic/GraphsOli.svelte';
 	import GraphsOliv2 from './olimpic/GraphsOliv2.svelte';
-import Integrations from './olimpic/Integrations.svelte';
+	import Integrations from './olimpic/Integrations.svelte';
 //import IntegrationFoodConsumption from './olimpic/IntegrationFoodConsumption.svelte';
 	
 	
@@ -20,7 +20,7 @@ import Integrations from './olimpic/Integrations.svelte';
 		"/olimpic-stats/graphs": GraphsOli,
 		"/olimpic-stats/graphsv2": GraphsOliv2,
 		"/integrations": Integrations,
-		//"/olimpic-stats/": IntegrationFoodConsumption,
+		"/olimpic-stats/foodconsumption-stats": IntegrationFoodConsumption,
 		"*": NotFound
 	}
 	
