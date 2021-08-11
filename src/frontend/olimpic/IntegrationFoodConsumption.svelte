@@ -1,77 +1,159 @@
 <script>
-    async function loadChart(){
-        let res1 = await fetch('https://sos2021-24.herokuapp.com/api/v2/children-out-school');
-        await fetch('https://sos2021-24.herokuapp.com/api/v2/children-out-school/loadInitialData');
-        let res2 = await fetch('/api/v2/olimpic-stats?city=Rio&year=2016')
-        let res_data1 = await res1.json()
-        let res_data2 = await res2.json()
-        let abandono = [];
-        let olimpic = [];
-        let anyos = [];
-        let total_label;
-        let total_label2;
-        res_data1.forEach((data) => {
-                if(data.country == "France"){
-                    abandono.push(data.children_out_school_total);
-                    anyos.push(data.year);
-                    total_label = 'Nº abandono en ' + data.country;
-                }
-            })
-        let anyo = anyos[1];
-        console.log(anyo);
-        res_data2.forEach((data) => {
-                if(data.city == "Rio" && data.year == anyo){
-                    olimpic.push(data.gold_medal);
-                    total_label2 = 'El número de medallas de oro es de ' + data.gold_medal;
-                }
-            })
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: anyos,
-            datasets: [{
-                label: total_label,
-                data: abandono,
-                borderWidth: 1 
-            }, {
-                label: total_label2,
-                data: olimpic,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+    import Header from '../Header.svelte';
+    import FusionCharts from 'fusioncharts';
+    import Charts from 'fusioncharts/fusioncharts.charts';
+    import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+    import SvelteFC, { fcRoot } from 'svelte-fusioncharts';
+    import {
+        onMount
+    } from "svelte";
+    import Button from "sveltestrap/src/Button.svelte";
+    
+    fcRoot(FusionCharts, Charts, FusionTheme);
+    const paises = new Set();
+    let categorias=[];
+	let gramperperson = [];
+	let caloryperperson = [];
+	let arrPaises =[];
+    let data = [];
+    var dict ={};
+    let data2=[];
+    let medallasOro=[];
+    let medallasPlata=[];
+    let medallasBronce=[];
+    var dataSource={};
+    var BASE_CONTACT_API_PATH= "/api/v2";
+    async function getData(){
+        console.log("Fetching data...");
+        const res = await fetch(BASE_CONTACT_API_PATH + "/foodconsumption-stats?year=2011");
+        const res2 = await fetch("https://sos2021-sep-cga.herokuapp.com/api/v2/olimpic-stats?city=Rio&year=2016");
+        
+        if(res.ok){
+            console.log("Ok.");
+            const json = await res.json();
+            const json2 = await res2.json();
+          
+            data=json;
+            data2=json2;
+           
+            console.log(`We have received ${data.length} data points.`);
+			let i=0;
+            let e=0;
+			while(e<data2.length){
+                
+                    paises.add(data2[e].country);
+                    console.log(data2[e]["gold_medal"])
+                e++;
             }
+			while(i<data.length){
+				paises.add(data[i].country);
+				 
+				i++;
+			
+			}
+            arrPaises = Array.from(paises);
+           
+            for(let p=0; p<arrPaises.length;p++ ){
+                if(!dict[arrPaises[p]]){
+                    dict[arrPaises[p]]={medallasOro : null, medallasPlata: null, medallasBronce:null, gramperperson:null, caloryperperson:null}
+                }
+                console.log(dict);
+            }
+           
+                let d=0;
+                let d2=0;
+                let paisesd = Object.keys(dict);
+                
+                    
+                    while(d<data.length){
+                    console.log(paisesd.includes(data[d].country));
+                    if(paisesd.includes(data[d].country)){
+                        
+                        dict[data[d].country]['gramperperson']=data[d].gramperperson;
+                        dict[data[d].country]['caloryperperson']=data[d].caloryperperson
+                    }
+                    d++
+                }
+                while(d2<data2.length){
+                    if(paisesd.includes(data2[d2].country)){
+    
+                        dict[data2[d2].country]['medallasOro']=data2[d2]["gold_medal"];
+                        dict[data2[d2].country]['medallasPlata']=data2[d2]["silver_medal"];
+                        dict[data2[d2].country]['medallasBronce']=data2[d2]["bronze_medal"];
+                        
+                    }
+                    d2++;  
+                }
+                for(let p=0; p<paisesd.length; p++){
+                    gramperperson.push({value: dict[paisesd[p]]['gramperperson']});
+				    caloryperperson.push({value: dict[paisesd[p]]['caloryperperson']});
+                    medallasOro.push({value: dict[paisesd[p]]['medallasOro']});
+                    medallasPlata.push({value: dict[paisesd[p]]['medallasPlata']});
+                    medallasBronce.push({value: dict[paisesd[p]]['medallasBronce']});
+                    
+                }
+               
+                for(let pa=0; pa<arrPaises.length; pa++){
+                    categorias.push({label: arrPaises[pa]});
+                }
+            
+        }else{
+            console.log("Error!");
         }
-    });
+        dataSource = {
+      "chart": {
+        "caption": "Integración con estadísticas de divorcios",
+        "subcaption": "Datos de 2011",
+        "numbersuffix": "",
+        "showsum": "1",
+        "plottooltext": "$label:  <b>$dataValue</b> $seriesName",
+        "theme": "fusion",
+        "drawcrossline": "1"
+      },
+      "categories": [
+        {
+          "category": categorias
+        }
+      ],
+      "dataset": [
+        {
+          "seriesname": "Gramos por persona",
+          "data": gramperperson
+        },
+        {
+          "seriesname": "Calorías por persona",
+          "data": caloryperperson
+        },
+        {
+          "seriesname": "Tasa de matrimonios",
+          "data": medallasOro
+        },
+        {
+          "seriesname": "Tasa de divorcios",
+          "data": medallasPlata
+        },
+        {
+          "seriesname": "Porcentaje de proporcion matrimonio/divorcio",
+          "data": medallasBronce
+        }
+      ]
+    };
+        cargarConf();
     }
+    onMount(getData);
+    var chartConfigs={};
+    async function cargarConf(){
+        chartConfigs = {
+            type: 'stackedcolumn2d',
+            width: 1300,  
+            height: 600,
+            dataFormat: 'json',
+            dataSource
+    };
+}
     </script>
-    
-    <main>
-        <h1>Gráfico que muestra el nº de abandono en Sevilla y el olimpic de la matrícula del grado de Ingeniería informática en la US en el año 2017</h1>
-        <canvas id="myChart" width="400" height="400"></canvas>
-    </main>
-    
-    <svelte:head>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js" on:load={loadChart}></script>
-    </svelte:head>
+    <Header/>
+  
+    <br>
+    <Button outline color="secondary" onclick="window.location.href='#/integrations'">Volver</Button>
+    <SvelteFC {...chartConfigs} />
