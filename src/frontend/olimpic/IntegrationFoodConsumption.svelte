@@ -17,7 +17,7 @@
                     total_label = 'Nº abandono en ' + data.country;
                 }
             })
-        let anyo = anyos[0];
+        let anyo = anyos[1];
         console.log(anyo);
         res_data2.forEach((data) => {
                 if(data.city == "Rio" && data.year == anyo){
