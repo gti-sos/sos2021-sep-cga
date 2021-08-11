@@ -34,7 +34,7 @@
 		Intregraciones:
 	</h2>
 	<ul>
-		<Button  class="secondary" onclick="window.location.href='#/olimpic-stats/foodconsumption-stats'" >G01-Divorce stats</Button>
+		<Button  class="secondary" onclick="window.location.href='#/olimpic-stats/smoke-stats'" >G01-smoke stats</Button>
 		<!--<Button  class="secondary" onclick="window.location.href='/#/foodconsumption-stats/nuts-production'"> G02-Nuts Production</Button>
 		<Button class="secondary" onclick="window.location.href='/#/foodconsumption-stats/wine-production-stats'"> G02-Wine Production</Button>
 		<Button class="secondary" onclick="window.location.href='/#/foodconsumption-stats/international-tourism'"> G03-International tourism</Button>

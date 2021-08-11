@@ -20,7 +20,7 @@
 		"/olimpic-stats/graphs": GraphsOli,
 		"/olimpic-stats/graphsv2": GraphsOliv2,
 		"/integrations": Integrations,
-		"/olimpic-stats/foodconsumption-stats": IntegrationSmoke,
+		"/olimpic-stats/smoke-stats": IntegrationSmoke,
 		"*": NotFound
 	}
 	
