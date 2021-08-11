@@ -15,8 +15,8 @@
 		"/info": Info,
 		"/olimpic-stats": HomeOlimpic,
 		"/olimpic-stats/:city/:year": EditOli,
-		"/olimpic-stats/graphs": GraphsOli,
-		"/olimpic-stats/graphsv2": GraphsOliv2,
+		"/graphs": GraphsOli,
+		"/graphsv2": GraphsOliv2,
 		"*": NotFound
 	}
 	
