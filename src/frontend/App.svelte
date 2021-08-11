@@ -7,7 +7,7 @@
 	import HomeOlimpic from './olimpic/HomeOlimpic.svelte';
 	import EditOli from './olimpic/EditOli.svelte';
 	import GraphsInterfaz from './olimpic/GraphsInterfaz.svelte';
-	import GraphsOli from './olimpic/GraphsOli.svelte';
+	//import GraphsOli from './olimpic/GraphsOli.svelte';
 	
 	
 	const routes = {
@@ -16,7 +16,7 @@
 		"/olimpic-stats": HomeOlimpic,
 		"/olimpic-stats/:city/:year": EditOli,
 		"/graphs": GraphsInterfaz,
-		"/olimpic-stats/graphs": GraphsOli,
+		//"/olimpic-stats/graphs": GraphsOli,
 		"*": NotFound
 	}
 	
