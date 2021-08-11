@@ -7,7 +7,7 @@
 	import HomeOlimpic from './olimpic/HomeOlimpic.svelte';
 	import EditOli from './olimpic/EditOli.svelte';
 	import GraphsInterfaz from './olimpic/GraphsOli.svelte';
-	import GraphsOliv2 from './olimpic/GraphsOliv2.svelte';
+	import GraphsOliv2 from './olimpic/GraphsOli.svelte';
 	
 	
 	const routes = {
