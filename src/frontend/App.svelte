@@ -6,7 +6,6 @@
 	import Landing from './Landing.svelte';
 	import HomeOlimpic from './olimpic/HomeOlimpic.svelte';
 	import EditOli from './olimpic/EditOli.svelte';
-	import GraphsInterfaz from './olimpic/GraphsInterfaz.svelte';
 	import GraphsOli from './olimpic/GraphsOli.svelte';
 	import GraphsOliv2 from './olimpic/GraphsOliv2.svelte';
 import Integrations from './olimpic/Integrations.svelte';
@@ -18,7 +17,6 @@ import Integrations from './olimpic/Integrations.svelte';
 		"/info": Info,
 		"/olimpic-stats": HomeOlimpic,
 		"/olimpic-stats/:city/:year": EditOli,
-		"/graphs": GraphsInterfaz,
 		"/olimpic-stats/graphs": GraphsOli,
 		"/olimpic-stats/graphsv2": GraphsOliv2,
 		"/integrations": Integrations,
