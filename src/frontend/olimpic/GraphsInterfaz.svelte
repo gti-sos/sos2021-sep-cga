@@ -1,3 +1,8 @@
+<script>
+    import Header from './Header.svelte';
+</script>
+<Header/>
+
 <main>
 	<h2>Página de gráficas de la API de cargonare1</h2>
     <br>

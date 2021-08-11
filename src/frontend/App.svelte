@@ -9,6 +9,8 @@
 	import GraphsInterfaz from './olimpic/GraphsInterfaz.svelte';
 	import GraphsOli from './olimpic/GraphsOli.svelte';
 	import GraphsOliv2 from './olimpic/GraphsOliv2.svelte';
+import Integrations from './olimpic/Integrations.svelte';
+//import IntegrationFoodConsumption from './olimpic/IntegrationFoodConsumption.svelte';
 	
 	
 	const routes = {
@@ -19,6 +21,8 @@
 		"/graphs": GraphsInterfaz,
 		"/olimpic-stats/graphs": GraphsOli,
 		"/olimpic-stats/graphsv2": GraphsOliv2,
+		"/integrations": Integrations,
+		//"/olimpic-stats/": IntegrationFoodConsumption,
 		"*": NotFound
 	}
 	
