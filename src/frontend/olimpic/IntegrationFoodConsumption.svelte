@@ -18,6 +18,7 @@
                 }
             })
         let anyo = anyos[0];
+        console.log(anyo);
         res_data2.forEach((data) => {
                 if(data.city == "Rio" && data.year == anyo){
                     olimpic.push(data.gold_medal);
