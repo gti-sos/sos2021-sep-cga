@@ -1,7 +1,7 @@
 <script>
     async function loadChart(){
         let res1 = await fetch('https://sos2021-10.herokuapp.com/api/v2/foodconsumption-stats');
-        await fetch('https://sos2021-10.herokuapp.com/api/v2/loadInitialData');
+        await fetch('https://sos2021-10.herokuapp.com/api/v2/foodconsumption-stats/loadInitialData');
         let res2 = await fetch("/api/v2/olimpic-stats?city=Barcelona&year=1992")
         let res_data1 = await res1.json()
         let res_data2 = await res2.json()
