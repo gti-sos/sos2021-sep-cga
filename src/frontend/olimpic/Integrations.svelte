@@ -27,14 +27,14 @@
 
 	<div class="position">
 	<h1>
-		<strong>SOS2021-10</strong>
+		<strong>sos2021-sep-cga</strong>
 	</h1>
 
 	<h2>
-		Intregraciones Consumo de Azúcares y Grasas:
+		Intregraciones:
 	</h2>
 	<ul>
-		<Button  class="secondary" onclick="window.location.href='#/foodconsumption-stats/divorce-stats'" >G01-Divorce stats</Button>
+		<Button  class="secondary" onclick="window.location.href='#/olimpic-stats/foodconsumption-stats'" >G01-Divorce stats</Button>
 		<!--<Button  class="secondary" onclick="window.location.href='/#/foodconsumption-stats/nuts-production'"> G02-Nuts Production</Button>
 		<Button class="secondary" onclick="window.location.href='/#/foodconsumption-stats/wine-production-stats'"> G02-Wine Production</Button>
 		<Button class="secondary" onclick="window.location.href='/#/foodconsumption-stats/international-tourism'"> G03-International tourism</Button>
