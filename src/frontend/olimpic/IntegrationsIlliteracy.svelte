@@ -19,7 +19,7 @@
         let sum = [];
   
         dataG2.forEach(( x) =>{
-       sum += x.gold_medal
+       sum = x.gold_medal
        console.log(dataG2)
        console.log((x.gold_medal))
        
