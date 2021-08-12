@@ -10,6 +10,7 @@
 	import GraphsOliv2 from './olimpic/GraphsOliv2.svelte';
 	import Integrations from './olimpic/Integrations.svelte';
 	import IntegrationSmoke from './olimpic/IntegrationSmoke.svelte';
+	import IntegrationSanity from "./olimpic/IntegrationSanity.svelte";
 	
 	
 	const routes = {
@@ -21,6 +22,7 @@
 		"/olimpic-stats/graphsv2": GraphsOliv2,
 		"/integrations": Integrations,
 		"/olimpic-stats/smoke-stats": IntegrationSmoke,
+		"/olimpic-stats/sanity-stats": IntegrationSanity,
 		"*": NotFound
 	}
 	
