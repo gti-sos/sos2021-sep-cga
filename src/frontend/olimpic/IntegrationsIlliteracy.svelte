@@ -69,7 +69,7 @@
   xAxis: { }, 
   series:  [ 
     { 
-      name: 'Casos de Estrés',
+      name: 'Presupuesto',
       points: array2
       
     }, 
