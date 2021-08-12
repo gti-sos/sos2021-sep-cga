@@ -69,12 +69,12 @@
   xAxis: { }, 
   series:  [ 
     { 
-      name: 'Stress',
+      name: 'Casos de Estrés',
       points: array2
       
     }, 
     { 
-      name: 'Inversion', 
+      name: 'Medallas de Oro', 
       points: array1
     } 
   ] 
