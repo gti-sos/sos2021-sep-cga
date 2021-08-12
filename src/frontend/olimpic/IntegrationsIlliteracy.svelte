@@ -69,7 +69,7 @@
   xAxis: { }, 
   series:  [ 
     { 
-      name: 'Presupuesto',
+      name: 'Presupuesto de distintas ciudades de España',
       points: array2
       
     }, 
