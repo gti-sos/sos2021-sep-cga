@@ -32,7 +32,7 @@
         
   
     myData.forEach(( x) =>{
-       array2.push({x: x.year.toString(), y:parseFloat( x.percentage)})
+       array2.push({x: x.year.toString(), y:x.budget})
        
       });
       console.log(myData)
