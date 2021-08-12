@@ -80,10 +80,11 @@
         <Button outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
         <br>
         <br>
-       <!-- <h1>Gráfico que muestra el porcentaje de médicos por cada 1000 habitantes y el número de medallas de Oro en 2008.</h1>-->
+        <h1>Gráfico que muestra el porcentaje de médicos por cada 1000 habitantes y el número de medallas de Oro en 2008.</h1>
           <body>
               <img src="" id="graph"/>
           </body>
+          <canvas id="myChart" width="400" height="400"></canvas>
     </main>
     
     <svelte:head>
