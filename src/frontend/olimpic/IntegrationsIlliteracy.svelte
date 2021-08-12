@@ -1,225 +1,97 @@
 <script>
-  import {onMount} from "svelte";
+  import { select_multiple_value } from "svelte/internal";
   
   
+    var miAPI = "https://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion?year=2016";
+    var API2 = "https://sos2021-sep-cga.herokuapp.com/api/v2/olimpic-stats?city=Rio&year=2016";
+    async function loadGraph(){
+        let dataG2 = [];
+        let myData = [];
+               
+        const resDataG2 = await fetch(API2);
+        const resData = await fetch(miAPI);
   
-  var BASE_API_PATH = '/api/v2/olimpic-stats';
+        myData = await resData.json();
+        dataG2 = await resDataG2.json();
   
-  var TOURISM_API_PATH = 'https://sos2021-03.herokuapp.com/api/integration/international-tourisms';
+        let array1 = [];
+        let array2 =[];
+        let sum = [];
   
-     
+        dataG2.forEach(( x) =>{
+       sum += x.gold_medal
+       console.log(dataG2)
+       console.log((x.gold_medal))
+       
+        });
+        
+       array1.push({x:"2016".toString(), y:sum })
   
-  //////////////////////////////////////////
-  //Funciones Cargar grafica y datos Api's//
-  //////////////////////////////////////////
+        
   
-  //Variables comunes
+        
   
-  var olimpic_data = [];
-  var tourism_data = [];
-  var inicio = 2014;
-  var fin = 2017;
-  var anyos = rangoAnyos(inicio,fin);
-  
-  
-  async function tomaDatosGrafica(datos,atributo){ //Esta funcion hace la media por años y 
-      
-  
-      //Filtramos para usar datos seleccionados a partir de año de inicio
-      var datosFiltradosAnyo = datos.filter((e)=>{
-          return e.year >= inicio;
+    myData.forEach(( x) =>{
+       array2.push({x: x.year.toString(), y:parseFloat( x.percentage)})
+       
       });
+      console.log(myData)
   
-      console.log("Datos filtrados:" + datosFiltradosAnyo);
-  
-      //Creamos variables auxiliares
-      var arrayTotal = [];
+      console.log(array1)
+      console.log(array2)
       
-      var anyos = rangoAnyos(inicio,fin);
-      var a = 0;
   
-      var mediaPorAnyo = 0;
-      var arrayFinal = [];
-      var contador0 = 0;
-      var contadorDist = 0;
-  
-      //Iteramos por cada año del rango establecido
-      for(var anyo in anyos){
-          //Pillamos el año
-          a=anyos[anyo];
-          //Limpiamos variables
-          mediaPorAnyo = 0;
-          arrayTotal=[];
-          
-          //Iteramos sobre los datos para comprobar si su año coincide con el establecido
-          for(var num in datosFiltradosAnyo){
-              var dato = datosFiltradosAnyo[num]; //Tomamos el dato que estamos iterando
-              if(dato.year == a){ //Si coincide con el año ("a") se toma el valor del atributo pasado por parametro
-                  arrayTotal.push(dato[atributo]);
-              }
-              else{
-                  arrayTotal.push(0);
-              }
-         }
-  
-         console.log("Total olimpic " + num +" " + arrayTotal);
-         
-         //Hacemos la media por años
-  
-         for(var i = 0; i < arrayTotal.length; ++i){
-          if(arrayTotal[i] == 0)
-              contador0++;
-          else
-              contadorDist++;
-          }
-  
-  
-         for(var num in arrayTotal){
-             mediaPorAnyo += arrayTotal[num];
-         }
-  
-         if(contador0 == anyos.length){
-             mediaPorAnyo = 0;
-         }
-         else{
-             mediaPorAnyo = mediaPorAnyo / contadorDist;
-         }
-  
-         mediaPorAnyo = Math.round(mediaPorAnyo);
-         
-         var objeto =  { x: a, y: mediaPorAnyo }
-  
-         //Pusheamos al array final
-         arrayFinal.push(objeto);
-      }
-  
-      return arrayFinal;
+        console.log("OK, BIEN")
+        var chart = JSC.chart('chartDiv', { 
+  debug: true, 
+  type: 'area', 
+  title_label_text: 'Area Series Types', 
+  legend_visible: false, 
+  defaultSeries: { 
+    shape_opacity: 0.7, 
+    color: '#f58e5e', 
+    defaultPoint_marker: { 
+      size: 10, 
+      outline: { color: 'white', width: 2 } 
+    } 
+  }, 
+  toolbar_items: { 
+    'Area Type': { 
+      type: 'select', 
+      label_style_fontSize: 13, 
+      margin: 5, 
+      items: 'Area,Area Step,Area Spline', 
+      events_change: function(val) { 
+        chart.series().options({ type: val }); 
+      } 
+    } 
+  }, 
+  xAxis: { }, 
+  series:  [ 
+    { 
+      name: 'Stress',
+      points: array2
+      
+    }, 
+    { 
+      name: 'Inversion', 
+      points: array1
+    } 
+  ] 
+});
   }
-  
-  
-  
-  async function cargaGrafica(){
-  
-      const res_ee = await fetch(BASE_API_PATH);
-      const res_r = await fetch(TOURISM_API_PATH);
-  
-      if (res_ee.ok){
-          var json_ee = await res_ee.json();
-          
-          if(json_ee.length===undefined){
-          olimpic_data = [];
-          olimpic_data.push(json_ee);          
-          }
-          else{
-          olimpic_data = json_ee;
-          }
-  
-      }
-      if(res_r.ok){
-          var json_r = await res_r.json();
-  
-          if(json_r.length===undefined){
-              console.log("Aqui llega undefined javi");
-          tourism_data = [];
-          tourism_data.push(json_r);          
-          }
-          else{
-          console.log("Aqui llegan datos javi");
-          console.log("longitud:" + json_r.length);
-          tourism_data = json_r;
-          console.log(json_r);
-          }
-  
-      }
-  
-      
-      /*tomamos los años y el dato a buscar de los elementos seleccionados
-      for(var elemento in olimpic_data){
-          console.log(elemento);
-          anyos.push(olimpic_data[elemento].year);
-          data_clasif.push(olimpic_data[elemento][datoClasif]);
-      }
-      console.log("años: " + anyos);
-      console.log("datos " + datoClasifEsp + ":" + data_clasif);
-      conjuntoAnyos = new Set(anyos);
-      anyos = [...conjuntoAnyos];*/
-  
-      //Tomamos los datos
-  
-      var datosGrafica_edex = await tomaDatosGrafica(olimpic_data,"education_expenditure_per_millions");
-      console.log("edex final:" + datosGrafica_edex);
-      var datosGrafica_tourism    = await tomaDatosGrafica(tourism_data,"expendituresbillion");
-      console.log("tourism final:" + datosGrafica_tourism);
-  
-      
-      var anyosGraphic = [];
-      var aux = "";
-  
-      for(var a in anyos){
-          aux = String(anyos[a]);
-          anyosGraphic.push(aux);
-      }
-      console.log("años grafica:" + anyosGraphic);
-      var obj_edex = {
-  type: "splineArea",
-  showInLegend: true,
-  name: "Gastos en educación (millones de euros)",
-  yValueFormatString: "€",
-  xValueFormatString: "",
-  dataPoints: datosGrafica_edex
-     };
-       var obj_tourism = {
-  type: "splineArea",
-  showInLegend: true,
-  name: "Gastos en turismo (billones de euros)",
-  yValueFormatString: "€",
-  xValueFormatString: "",
-  dataPoints: datosGrafica_tourism
- }
-  
-   var datos_grafica = [];
-   datos_grafica.push(obj_edex);
-   datos_grafica.push(obj_tourism);
-      var chart = new CanvasJS.Chart("chartContainer", {
-          animationEnabled: true,
-          title:{
-              text: "Gatos en educación vs Gastos en Turismo"
-          },
-          axisY :{
-              includeZero: false
-              
-          },
-          toolTip: {
-              shared: true
-          },
-          legend: {
-              fontSize: 13
-          },
-          data: datos_grafica
-      });
-      chart.render();
-};
-  // Funciones auxiliares
-  
-  function rangoAnyos(inic,fin){
-      var rango = [];
-      for(var i = inic; i<=fin;i++){
-          rango.push(i);
-      }
-      return rango;
-  }
-  
   </script>
   
   <svelte:head>
-      <!--Se hace uso de la biblioteca CanvasJS y el tipo es  Multi Series Spline Area-->    
-      <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js" on:load="{cargaGrafica}"></script>
+  
+  <script
+  
+  type="text/javascript" src="https://code.jscharting.com/latest/jscharting.js"
+      on:load={loadGraph}></script>
   </svelte:head>
   
   <main>
-      <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+  
+  <div id="chartDiv"></div>
+  
   </main>
-  
-  <style>
-  
-  </style>
