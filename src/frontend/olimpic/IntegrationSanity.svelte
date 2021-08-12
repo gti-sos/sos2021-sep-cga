@@ -2,7 +2,7 @@
     async function loadChart(){
         let res1 = await fetch('https://sos2021-10.herokuapp.com/api/v2/sanity-stats');
         await fetch('https://sos2021-10.herokuapp.com/api/v2/sanity-stats/loadInitialData');
-        let res2 = await fetch('https://sos2021-sep-cga.herokuapp.com/api/v2/olimpic-stats?city=Rio&year=2016')
+        let res2 = await fetch('https://sos2021-sep-cga.herokuapp.com/api/v2/olimpic-stats?city=Pekin&year=2008')
         let res_data1 = await res1.json()
         let res_data2 = await res2.json()
         let sanidad = [];
