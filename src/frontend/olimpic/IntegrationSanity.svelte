@@ -12,9 +12,9 @@
         let total_label2;
         res_data1.forEach((data) => {
                 if(data.country == "Germany" && data.year == 2008){
-                    sanidad.push(data.doctor_per_1000_habitant);
+                    sanidad.push(data.hospital_bed);
                     anyos.push(data.year);
-                    total_label = 'Nº doctores';
+                    total_label = 'Nº de camas';
                 }
             })
         let anyo = anyos[0];
