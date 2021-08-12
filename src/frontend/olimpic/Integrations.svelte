@@ -36,7 +36,7 @@
 	<ul>
 		<Button  class="secondary" onclick="window.location.href='#/olimpic-stats/smoke-stats'" >G01-Smoke Stats</Button>
 		<Button  class="secondary" onclick="window.location.href='/#/olimpic-stats/sanity-stats'"> G02-Sanity Stats</Button>
-		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/divorce-stats'"> G03-Divorce Stats</Button>
+		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/budget-stats'"> G03-Budget Stats</Button>
 		<!--<Button class="secondary" onclick="window.location.href='/#/foodconsumption-stats/international-tourism'"> G03-International tourism</Button>
 		<Button  class="secondary" onclick="window.location.href='/#/foodconsumption-stats/poverty-risks'"> G04-Poverty risks</Button>
 		<Button class="secondary" onclick="window.location.href='/#/foodconsumption-stats/children-out-school'"> G24-Children out of school</Button>

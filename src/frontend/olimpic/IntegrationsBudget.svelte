@@ -1,5 +1,10 @@
 <script>
   import { select_multiple_value } from "svelte/internal";
+  import Header from '../Header.svelte';
+  import Button from "sveltestrap/src/Button.svelte";
+  import {
+        onMount
+  } from "svelte";
   
   
     var miAPI = "https://sos2021-27.herokuapp.com/api/v2/province-budget-and-investment-in-social-promotion?year=2016";
@@ -91,7 +96,12 @@
   </svelte:head>
   
   <main>
-  
-  <div id="chartDiv"></div>
-  
+    <Header/>
+    <br>
+    <br>
+    <Button outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
+    <br>
+    <br>
+    <h1>Gráfico que muestra el Presupuesto en distintas ciudades de España y el número de medallas de oro en 2016.</h1>
+    <div id="chartDiv"></div>
   </main>
