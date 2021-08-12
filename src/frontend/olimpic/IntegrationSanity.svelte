@@ -1,4 +1,11 @@
 <script>
+
+    import Header from '../Header.svelte';
+    import Button from "sveltestrap/src/Button.svelte";
+    import {
+        onMount
+    } from "svelte";
+
     async function loadChart(){
         let res1 = await fetch('https://sos2021-10.herokuapp.com/api/v2/sanity-stats');
         await fetch('https://sos2021-10.herokuapp.com/api/v2/sanity-stats/loadInitialData');
@@ -67,8 +74,16 @@
     </script>
     
     <main>
-        <h1>Gráfico que muestra el nº de sanidad en Sevilla y el olimpic de la matrícula del grado de Ingeniería informática en la US en el año 2017</h1>
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <Header/>
+        <br>
+        <br>
+        <Button outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
+        <br>
+        <br>
+        <h1>Gráfico que muestra el porcentaje de médicos por cada 1000 habitantes y el número de medallas de Oro en 2008.</h1>
+          <body>
+              <img src="" id="graph"/>
+          </body>
     </main>
     
     <svelte:head>

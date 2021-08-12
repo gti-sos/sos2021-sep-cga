@@ -87,7 +87,7 @@ let url = "https://quickchart.io/chart?c="+JSON.stringify(c)
   <Button outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
   <br>
   <br>
-  <h1>Gráfico que muestra las medallas de Barcelona '92</h1>
+  <h1>Gráfico que muestra el porcentaje de fumadores y el número de medallas de oro en 2016.</h1>
     <body>
         <img src="" id="graph"/>
     </body>
