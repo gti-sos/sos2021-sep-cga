@@ -7,26 +7,26 @@
     } from "svelte";
 
     async function loadData() {
-        let res1 = await fetch('https://sos2021-10.herokuapp.com/api/v2/sanity-stats/');
-        await fetch('https://sos2021-10.herokuapp.com/api/v2/sanity-stats/loadInitialData');
-        let res2 = await fetch('https://sos2021-sep-cga.herokuapp.com/api/v2/olimpic-stats?city=Pekin&year=2008')
+        let res1 = await fetch('https://sos2021-11.herokuapp.com/api/v2/smoking_stats/');
+        await fetch('https://sos2021-11.herokuapp.com/api/v2/smoking_stats/loadInitialData');
+        let res2 = await fetch('https://sos2021-sep-cga.herokuapp.com/api/v2/olimpic-stats?city=Rio&year=2016')
         
         let res_data1 = await res1.json()
         let res_data2 = await res2.json()
-        let sanity_stats = [];
+        let smokingPopulation = [];
         let olimpic = [];
         let dat = [];
         let total_label = [];
-
+        let aux = 0;
         res_data1.forEach((data) => {
-            if(data.country == "India" && data.year == 2008){
-                sanity_stats.push(data.doctor_per_1000_habitant);
-                total_label.push(data.country+"-Número de médicos")
+            if(data.country == "Spain" && aux == 0){
+                smokingPopulation.push(data.smoking_population);
+                total_label.push(data.country+"-Porcentaje fumadores")
                 aux = 1;
             }
         })
         
-        sanity_stats.forEach((data) => {
+        smokingPopulation.forEach((data) => {
            dat.push(data);
         })
         res_data2.forEach((data) => {
@@ -84,7 +84,7 @@ let url = "https://quickchart.io/chart?c="+JSON.stringify(c)
   <Header/>
   <br>
   <br>
-  <Button outline color="secondary" onclick="window.location.href='#/integrations'">Volver</Button>
+  <Button outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
   <br>
   <br>
   <h1>Gráfico que muestra las medallas de Barcelona '92</h1>
