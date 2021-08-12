@@ -14,14 +14,14 @@
                 if(data.country == "Germany" && data.year == 2008){
                     sanidad.push(data.doctor_per_1000_habitant);
                     anyos.push(data.year);
-                    total_label = 'Nº camas' + data.hospital_bed;
+                    total_label = 'Nº doctores';
                 }
             })
         let anyo = anyos[0];
         res_data2.forEach((data) => {
                 if(data.city == "Pekin" && data.year == anyo){
                     olimpic.push(data.gold_medal);
-                    total_label2 = 'Número medallas de Oro' + data.gold_medal;
+                    total_label2 = 'Número medallas de Oro ';
                 }
             })
         var ctx = document.getElementById('myChart').getContext('2d');
