@@ -11,7 +11,7 @@
 	import Integrations from './olimpic/Integrations.svelte';
 	import IntegrationSmoke from './olimpic/IntegrationSmoke.svelte';
 	import IntegrationSanity from "./olimpic/IntegrationSanity.svelte";
-	import IntegrationsDivorce from './olimpic/IntegrationsDivorce.svelte';
+	import IntegrationsIlliteracy from './olimpic/IntegrationsIlliteracy.svelte';
 	
 	
 	const routes = {
@@ -24,7 +24,7 @@
 		"/integrations": Integrations,
 		"/olimpic-stats/smoke-stats": IntegrationSmoke,
 		"/olimpic-stats/sanity-stats": IntegrationSanity,
-		"/olimpic-stats/divorce-stats": IntegrationsDivorce,
+		"/olimpic-stats/divorce-stats": IntegrationsIlliteracy,
 		"*": NotFound
 	}
 	
