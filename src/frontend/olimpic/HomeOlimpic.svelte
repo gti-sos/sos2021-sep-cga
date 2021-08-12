@@ -49,7 +49,7 @@
 			</ModalFooter>
 		</Modal>
 			
-	<h5>Gráfica del Consumo de azúcares y grasas:</h5>
+	<h5>Gráfica de las medallas de España:</h5>
 			
 	<Button outline color="warning" onclick="window.location.href='#/olimpic-stats/graphs'">Gráfico Highcharts</Button>
 	<Button outline color="warning" onclick="window.location.href='#/olimpic-stats/graphsv2'">Gráfico Quickchart</Button>
