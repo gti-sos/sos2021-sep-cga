@@ -17,7 +17,7 @@
         for(let i = 0; i < 4; i++) {
             if(i < 4){
                 array1.push(parseInt(res_data1.co2[i].year));
-                array.push(res_data1.data[i].cycle + ' cycle');
+                array.push(res_data1.co2[i].cycle + ' cycle');
             }
         }
         console.log(res_data2);
