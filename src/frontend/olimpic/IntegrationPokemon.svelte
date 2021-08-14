@@ -19,10 +19,10 @@
         let res_data1 = await res1.json()
         let res_data2 = await res2.json()
         console.log(res_data1)
-        aux = '(' + res_data1[0].pokemon_id + ')' + ' ' + res_data1[0].pokemon_name
+        aux = 'Número en la pokedex' + res_data1[0].pokemon_id  + ' ' + res_data1[0].pokemon_name
         let myData1={
             name: aux,
-            data: [res_data1[0].pokemon_id]
+            data: ["Probabilidad de ataque" + res_data1[0].attack_probability] 
         };
         res_data2.forEach((data) => {
             if(data.year == 2016){
@@ -42,7 +42,7 @@
         height: '100%'
     },
     title: {
-        text: 'Gráfica que contiene una anécdota aleatoria del año 2017 y notas de corte de grados de la US en 2017'
+        text: 'Gráfica que contiene las medallas de oro de Rio 2016 y las estadísticas del primer pokemon de Pokemon GO'
     },
     tooltip: {
         useHTML: true,
