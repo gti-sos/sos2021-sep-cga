@@ -1,4 +1,11 @@
 <script>
+
+    import Header from '../Header.svelte';
+    import Button from "sveltestrap/src/Button.svelte";
+    import {
+        onMount
+    } from "svelte";
+
     let dataOlimpic = [];
     let datosAux = [];
     let datosAux1 = [];
@@ -94,6 +101,12 @@
 </script>
 
 <main>
+    <Header/>
+        <br>
+        <br>
+        <Button outline color="secondary" onclick="window.location.href='#/integrations'">Volver</Button>
+        <br>
+        <br>
     <figure class="highcharts-figure">
         <div id="container"></div>
         <p class="highcharts-description">
