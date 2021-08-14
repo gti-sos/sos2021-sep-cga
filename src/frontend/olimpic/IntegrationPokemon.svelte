@@ -1,9 +1,12 @@
 <script>
-    let aux = 0;
-    let Pokemon = [];
-    let stringPokemon;
-    let medallasOro;
+    let frase;
     async function loadGraph(){
+        let Datas = [];
+        let aux;
+        let myData={
+            name: 'Medallas de Oro',
+            data: []
+        };
         let res1 = await fetch("https://pokemon-go1.p.rapidapi.com/pokemon_encounter_data.json", {
 	"method": "GET",
 	"headers": {
@@ -11,56 +14,93 @@
 		"x-rapidapi-host": "pokemon-go1.p.rapidapi.com"
 	}
 });
-        let res2 = await fetch('/api/v2/olimpic-stats');
+        let res2 = await fetch('/api/v2/olimpic-stats')
         
-        let res_data1 = await res1.json();
-        let res_data2 = await res2.json();
+        let res_data1 = await res1.json()
+        let res_data2 = await res2.json()
+        console.log(res_data1)
+        aux = '(' + res_data1[0].pokemon_id + ')' + ' ' + res_data1[0].pokemon_name
+        let myData1={
+            name: aux,
+            data: [res_data1[0].pokemon_id]
+        };
         res_data2.forEach((data) => {
-            if(data.year == 1992){
-                medallasOro = data.gold_medal;
+            if(data.year == 2016){
+                myData['data'].push({
+                    name:data.city  + " " +data.year,
+                    value: data.gold_medal
+            });
             }
         });
-        res_data1.data.forEach((data) => {
-            if(data.pokemon_id == 6 && data.form == "Copy_2019"){
-                stringPokemon = 'El nombre es ' +  data.pokemon_name + 'y su número en la pokedex es el ' + data.pokemon_id;
-                Pokemon.push(data);
-            }
-        });
-        let pok = Pokemon[0].pokemon_id;
+        
+        Datas.push(myData);
+        Datas.push(myData1);
+        console.log(Datas)
         Highcharts.chart('container', {
-  chart: {
-    type: 'pie'
-  },
-  series: [{
-    colorByPoint: true,
-    data: [{
-      name: stringPokemon,
-      y: pok,
-      sliced: true,
-      selected: true
-    }, {
-      name: 'Números de medallas en Barcelona 92',
-      y: medallasOro
-    }
-    ]
-  }]
+    chart: {
+        type: 'packedbubble',
+        height: '100%'
+    },
+    title: {
+        text: 'Gráfica que contiene una anécdota aleatoria del año 2017 y notas de corte de grados de la US en 2017'
+    },
+    tooltip: {
+        useHTML: true,
+        pointFormat: '<b>{point.name}:</b> {point.value}'
+    },
+    plotOptions: {
+        packedbubble: {
+            minSize: '30%',
+            maxSize: '100%',
+            zMin: 0,
+            zMax: 1000,
+            layoutAlgorithm: {
+                splitSeries: false,
+                gravitationalConstant: 0.02
+            },
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}',
+                filter: {
+                    property: 'y',
+                    operator: '>',
+                    value: 250
+                },
+                style: {
+                    color: 'black',
+                    textOutline: 'none',
+                    fontWeight: 'normal'
+                }
+            }
+        }
+    },
+    series: Datas
 });
     }
     
 </script>
 
 <svelte:head>
-    <script src="https://code.highcharts.com/highcharts.js" on:load="{loadGraph}"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"on:load="{loadGraph}"></script>    
 </svelte:head>
 
 
 <main>
 
-
     <figure class="highcharts-figure">
         <div id="container"></div>
         <p class="highcharts-description">
-            Gráfica que muestra el nº de fallecidos totales en Andalucía por covid a día de hoy y el nº de presentados a selectividad en Sevilla en 2020
-        </p>
+        
     </figure>
 </main>
+
+<style>
+    .highcharts-figure {
+    min-width: 320px; 
+    max-width: 1000px;
+    margin: 1em auto;
+    }
+</style>
