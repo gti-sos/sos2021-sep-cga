@@ -11,7 +11,7 @@ import Header from '../Header.svelte';
         let Datas = [];
         let aux;
         let myData={
-            name: 'Medallas de Oro',
+            name: 'Medallas totales',
             data: []
         };
         let res1 = await fetch("https://pokemon-go1.p.rapidapi.com/pokemon_encounter_data.json", {
@@ -49,7 +49,7 @@ import Header from '../Header.svelte';
         height: '100%'
     },
     title: {
-        text: 'Gráfica que contiene todas las medallas de oro y la probabilidad media de captura de Charizard en de Pokemon GO'
+        text: 'Gráfica que contiene todas las medallas y la probabilidad media de captura de Charizard en Pokemon GO'
     },
     tooltip: {
         useHTML: true,

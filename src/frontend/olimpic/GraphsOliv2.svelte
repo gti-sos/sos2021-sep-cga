@@ -7,7 +7,7 @@
     } from "svelte";
 
     async function load_api_graph(){
-        let url_api = "/api/v2/olimpic-stats?city=Barcelona&year=1992";
+        let url_api = "/api/v2/olimpic-stats?city=Tokyo&year=2021";
         let res_api = await fetch(url_api)
         let res_data = await res_api.json()
         let medallasOro = []
@@ -51,7 +51,7 @@
         <Button outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
         <br>
         <br>
-        <h1>Gráfico que muestra las medallas de Barcelona '92</h1>
+        <h1>Gráfico que muestra las medallas de Tokyo 2021</h1>
         <body>
             <img src="" id="graph"/>
         </body>
