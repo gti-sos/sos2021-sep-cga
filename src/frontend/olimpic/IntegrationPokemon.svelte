@@ -35,7 +35,7 @@ import Header from '../Header.svelte';
           //  if(data.year == 2021 || data.year == 2016 || data.year == 2012 || data.year == 2008 || data.year == 2004 || data.year == 2000){
                 myData['data'].push({
                     name:data.city  + " " +data.year,
-                    value: data.gold_medal
+                    value: data.gold_medal + data.silver_medal + data.bronze_medal
             });
             //}
         });
@@ -49,7 +49,7 @@ import Header from '../Header.svelte';
         height: '100%'
     },
     title: {
-        text: 'Gráfica que contiene las medallas de oro desde el año 2000 y la probabilidad media de captura de Charizard en de Pokemon GO'
+        text: 'Gráfica que contiene todas las medallas de oro y la probabilidad media de captura de Charizard en de Pokemon GO'
     },
     tooltip: {
         useHTML: true,
