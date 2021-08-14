@@ -25,7 +25,7 @@
         for(let i = 0; i < 4; i++) {
             if(i < 4){
                 array1.push(parseInt(res_data1.co2[i].year));
-                array.push(res_data1.co2[i].cycle + ' cantidad media de CO2 en el Aire');
+                array.push(res_data1.co2[i].cycle + " - " + ' cantidad media de CO2 en el Aire');
             }
         }
         console.log(res_data2);
@@ -69,8 +69,10 @@
     <Button outline color="secondary" onclick="window.location.href='#/integrations'">Volver</Button>
     <br>
     <br>
-    <h1>Gráfico que muestra la cantidad media de CO2 en el aire durante el año 2011 y el total de medallas en nuestra historia</h1>
-    <div id="chart"></div>
+    <!--<h1>Gráfico que muestra la cantidad media de CO2 en el aire durante el año 2011 y el total de medallas en nuestra historia</h1>-->
+    <div id="chart">
+        Gráfico que muestra la cantidad media de CO2 en el aire durante el año 2011 y el total de medallas en nuestra historia
+    </div>
 </main>
 
 <svelte:head>
