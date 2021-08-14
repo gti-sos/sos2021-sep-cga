@@ -1,6 +1,6 @@
 <script>
 
-import Header from '../Header.svelte';
+    import Header from '../Header.svelte';
     import Button from "sveltestrap/src/Button.svelte";
     import {
         onMount
@@ -44,7 +44,7 @@ import Header from '../Header.svelte';
       sliced: true,
       selected: true
     }, {
-      name: 'Medallas de Oro desde 2000',
+      name: 'Medallas de Oro',
       y: numMedallasOro
     }
     ]

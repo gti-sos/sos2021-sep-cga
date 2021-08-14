@@ -14,7 +14,8 @@
 	import IntegrationsBudget from './olimpic/IntegrationsBudget.svelte';
 	import IntegrationBlockChain from './olimpic/IntegrationBlockChain.svelte';
 	import IntegrationPokemon from './olimpic/IntegrationPokemon.svelte';
-	import IntegrationPopulation from './olimpic/IntegrationPopulation.svelte';
+	import IntegrationFood from './olimpic/IntegrationFood.svelte';
+	import IntegrationCO2 from './olimpic/IntegrationCO2.svelte';
 	
 	
 	const routes = {
@@ -30,7 +31,8 @@
 		"/olimpic-stats/budget-stats": IntegrationsBudget,
 		"/olimpic-stats/block-chain": IntegrationBlockChain,
 		"/olimpic-stats/pokemon": IntegrationPokemon,
-		"/olimpic-stats/population":IntegrationPopulation,
+		"/olimpic-stats/food":IntegrationFood,
+		"/olimpic-stats/co2":IntegrationCO2,
 		"*": NotFound
 	}
 	

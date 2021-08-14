@@ -39,9 +39,9 @@
 		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/budget-stats'"> I03-Budget Stats</Button>
 		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/block-chain'"> I04-Block Chain</Button>
 		<Button  class="secondary" onclick="window.location.href='/#/olimpic-stats/pokemon'"> I05-Pokemon</Button>
-		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/population'"> I06-Population</Button>
-		<!--<Button class="secondary" onclick="window.location.href='/#/foodconsumption-stats/apiext1'"> API Externa 1</Button>
-		<Button class="secondary" onclick="window.location.href='/#/foodconsumption-stats/apiext2'"> API Externa 2</Button>-->
+		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/food'"> I06-Food</Button>
+		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/co2'"> I07-CO2 </Button>
+		<!--<Button class="secondary" onclick="window.location.href='/#/foodconsumption-stats/apiext2'"> API Externa 2</Button>-->
 	</ul>
 
 </main>
