@@ -22,7 +22,7 @@
         aux = 'Número en la pokedex' + res_data1[0].pokemon_id  + ' ' + res_data1[0].pokemon_name
         let myData1={
             name: aux,
-            data: ["Probabilidad de ataque" + res_data1[0].attack_probability] 
+            data: [res_data1[0].attack_probability] 
         };
         res_data2.forEach((data) => {
             if(data.year == 2016){
