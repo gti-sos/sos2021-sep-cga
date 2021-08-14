@@ -32,7 +32,7 @@ import Header from '../Header.svelte';
             data: [(res_data1[18].max_pokemon_action_frequency + res_data1[18].min_pokemon_action_frequency)/2] 
         };
         res_data2.forEach((data) => {
-            if(data.year == 2021){
+            if(data.year == 2021 || data.year == 2016 || data.year == 2012 || data.year == 2008 || data.year == 2004 || 2000){
                 myData['data'].push({
                     name:data.city  + " " +data.year,
                     value: data.gold_medal
