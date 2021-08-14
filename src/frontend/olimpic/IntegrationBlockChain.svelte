@@ -38,7 +38,7 @@
         zoomType: 'xy'
     },
     title: {
-        text: 'Gráfica que contiene las notas de corte del grado de ingeniería informática de la US en distintos años, y el peso y el id de un jugador aleatorio de la NBA'
+        text: 'Gráfica que contiene las medallas de España en distintos años y el valor de la criptomoneda coinpaprika'
     },
     xAxis: {
         title: {
@@ -87,12 +87,12 @@
         }
     },
     series: [{
-        name: 'Año y nota de corte de grados',
+        name: 'Año y medallas de oro',
         color: 'rgba(223, 83, 83, .5)',
         data: datosAux
     },
     {
-        name: res_data1.id + ' ' + res_data1.name,
+        name: "Valor de la moneda y posición del ranking en el que se encuentra",
         color: 'rgba(250, 83, 83, .5)',
         data: datosAux1
     }]
