@@ -20,10 +20,8 @@
                 numMedallas += data.gold_medal;
             }
         })
-        res_data1.forEach((data) => {
-                stringMexico = 'La población total en' +  data.body.country_name;
-                Mexico.push(data);
-        });
+        stringMexico = 'La población total en' +  res_data1[0].body.country_name;
+        Mexico.push(res_data1[0]);
         let poblacionMexico = Mexico[0].body.population;
         Highcharts.chart('container', {
   chart: {
