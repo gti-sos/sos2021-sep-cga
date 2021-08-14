@@ -19,13 +19,13 @@
             if(data.year == 1992){
                 medallasOro = data.gold_medal;
             }
-        })
+        });
         res_data1.data.forEach((data) => {
             if(data.pokemon_id == 6 && data.form == "Copy_2019"){
                 stringPokemon = 'El nombre es ' +  data.pokemon_name + 'y su número en la pokedex es el ' + data.pokemon_id;
                 Pokemon.push(data);
             }
-        })
+        });
         let pok = Pokemon[0].pokemon_id;
         Highcharts.chart('container', {
   chart: {
