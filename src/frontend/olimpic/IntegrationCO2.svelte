@@ -1,4 +1,11 @@
 <script>
+    
+    import Header from '../Header.svelte';
+    import Button from "sveltestrap/src/Button.svelte";
+    import {
+        onMount
+    } from "svelte";
+    
     let array = [];
     let array1 = [];
     let array2 = [];
@@ -18,7 +25,7 @@
         for(let i = 0; i < 4; i++) {
             if(i < 4){
                 array1.push(parseInt(res_data1.co2[i].year));
-                array.push(res_data1.co2[i].cycle + ' cycle');
+                array.push(res_data1.co2[i].cycle + ' cantidad media de CO2 en el Aire');
             }
         }
         console.log(res_data2);
@@ -56,7 +63,13 @@
 </script>
 
 <main>
-    <h1>Gráfico que muestra el valor de varias criptomonedas en USD a día de hoy y los presentados en selectidad en Sevilla varios años</h1>
+    <Header/>
+    <br>
+    <br>
+    <Button outline color="secondary" onclick="window.location.href='#/integrations'">Volver</Button>
+    <br>
+    <br>
+    <h1>Gráfico que muestra la cantidad media de CO2 en el aire durante el año 2011 y el total de medallas en nuestra historia</h1>
     <div id="chart"></div>
 </main>
 
