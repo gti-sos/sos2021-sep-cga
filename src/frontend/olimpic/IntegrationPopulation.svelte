@@ -23,16 +23,14 @@ import Header from '../Header.svelte';
         let res_data1 = await res1.json();
         let res_data2 = await res2.json();
         res_data2.forEach((data) => {
-            if(data.year >= 2000){
                 numMedallasOro += data.gold_medal;
-            }
-        })
+        });
         res_data1.forEach((data) => {
             if(data.id == 839){
                 stringComida = 'Calorías totales en ' +  data.shrt_desc;
                 Calorias.push(data);
             }
-        })
+        });
         let numCalorias = Calorias[0].energ_kcal;
         Highcharts.chart('container', {
   chart: {
@@ -72,7 +70,7 @@ import Header from '../Header.svelte';
     <figure class="highcharts-figure">
         <div id="container"></div>
         <p class="highcharts-description">
-            Gráfica que muestra el nº de fallecidos totales en Andalucía por covid a día de hoy y el nº de presentados a selectividad en Sevilla en 2020
+            Gráfica que muestra el nº de medallas de oro totales y el nº de calorías de un plato hecho a base de manzana
         </p>
     </figure>
 </main>
