@@ -14,6 +14,7 @@
 	import IntegrationsBudget from './olimpic/IntegrationsBudget.svelte';
 	import IntegrationBlockChain from './olimpic/IntegrationBlockChain.svelte';
 	import IntegrationPokemon from './olimpic/IntegrationPokemon.svelte';
+	import IntegrationPopulation from './olimpic/IntegrationPopulation.svelte';
 	
 	
 	const routes = {
@@ -29,6 +30,7 @@
 		"/olimpic-stats/budget-stats": IntegrationsBudget,
 		"/olimpic-stats/block-chain": IntegrationBlockChain,
 		"/olimpic-stats/pokemon": IntegrationPokemon,
+		"/olimpic-stats/population":IntegrationPopulation,
 		"*": NotFound
 	}
 	

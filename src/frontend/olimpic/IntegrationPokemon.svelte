@@ -49,7 +49,7 @@ import Header from '../Header.svelte';
         height: '100%'
     },
     title: {
-        text: 'Gráfica que contiene las medallas de oro desde el añp 2000 y la probabilidad media de captura de Charizard en de Pokemon GO'
+        text: 'Gráfica que contiene las medallas de oro desde el año 2000 y la probabilidad media de captura de Charizard en de Pokemon GO'
     },
     tooltip: {
         useHTML: true,
