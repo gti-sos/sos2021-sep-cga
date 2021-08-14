@@ -32,7 +32,7 @@ import Header from '../Header.svelte';
             data: [(res_data1[18].max_pokemon_action_frequency + res_data1[18].min_pokemon_action_frequency)/2] 
         };
         res_data2.forEach((data) => {
-            if(data.year == 2021 || data.year == 2016 || data.year == 2012 || data.year == 2008 || data.year == 2004 || 2000){
+            if(data.year == 2021 || data.year == 2016 || data.year == 2012 || data.year == 2008 || data.year == 2004 || data.year == 2000){
                 myData['data'].push({
                     name:data.city  + " " +data.year,
                     value: data.gold_medal
@@ -49,7 +49,7 @@ import Header from '../Header.svelte';
         height: '100%'
     },
     title: {
-        text: 'Gráfica que contiene las medallas de oro de Tokyo 2021 y la probabilidad media de captura de Charizard en de Pokemon GO'
+        text: 'Gráfica que contiene las medallas de oro desde el añp 2000 y la probabilidad media de captura de Charizard en de Pokemon GO'
     },
     tooltip: {
         useHTML: true,
