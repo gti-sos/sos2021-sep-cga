@@ -20,7 +20,7 @@
                 numMedallas += data.gold_medal;
             }
         })
-        res_data1.data.forEach((data) => {
+        res_data1.forEach((data) => {
                 stringMexico = 'La población total en' +  data.body.country_name;
                 Mexico.push(data);
         });
