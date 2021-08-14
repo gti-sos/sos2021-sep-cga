@@ -1,4 +1,11 @@
 <script>
+
+import Header from '../Header.svelte';
+    import Button from "sveltestrap/src/Button.svelte";
+    import {
+        onMount
+    } from "svelte";
+
     let aux = 0;
     let Calorias = [];
     let stringComida;
@@ -17,7 +24,7 @@
         let res_data2 = await res2.json();
         res_data2.forEach((data) => {
             if(data.year >= 2000){
-                numMedallasOro = data.gold_medal;
+                numMedallasOro += data.gold_medal;
             }
         })
         res_data1.forEach((data) => {
@@ -39,7 +46,7 @@
       sliced: true,
       selected: true
     }, {
-      name: 'Presentados selectividad 2020',
+      name: 'Medallas de Oro desde 2000',
       y: numMedallasOro
     }
     ]
@@ -55,7 +62,12 @@
 
 
 <main>
-
+    <Header/>
+    <br>
+    <br>
+    <Button outline color="secondary" onclick="window.location.href='#/integrations'">Volver</Button>
+    <br>
+    <br>
 
     <figure class="highcharts-figure">
         <div id="container"></div>
