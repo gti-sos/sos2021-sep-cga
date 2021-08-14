@@ -2,6 +2,7 @@
     let array = [];
     let array1 = [];
     let array2 = [];
+    let cont=0;
     async function loadGraph() {
         let res1 = await fetch("https://daily-atmosphere-carbon-dioxide-concentration.p.rapidapi.com/api/co2-api", {
 	        "method": "GET",
@@ -21,10 +22,15 @@
             }
         }
         console.log(res_data2);
-        for(let j = 0; j < 4; j++){
-            array1.push(res_data2[j].gold_medal);
-            array.push('Medallas de oro en el año ' + res_data2[j].year);
+        for(let j = 0; j < 24; j++){
+            cont+=res_data2[j].gold_medal;
+            cont+=res_data2[j].silver_medal;
+            cont+=res_data2[j].bronze_medal;
         }
+        
+        array1.push(cont);
+        array.push('Número de medallas totales ');
+        
         var options = {
           series: array1,
           chart: {
