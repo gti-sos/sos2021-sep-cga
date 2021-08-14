@@ -12,6 +12,7 @@
 	import IntegrationSmoke from './olimpic/IntegrationSmoke.svelte';
 	import IntegrationSanity from "./olimpic/IntegrationSanity.svelte";
 	import IntegrationsBudget from './olimpic/IntegrationsBudget.svelte';
+	import IntegrationBlockChain from './olimpic/IntegrationBlockChain.svelte';
 	
 	
 	const routes = {
@@ -25,6 +26,7 @@
 		"/olimpic-stats/smoke-stats": IntegrationSmoke,
 		"/olimpic-stats/sanity-stats": IntegrationSanity,
 		"/olimpic-stats/budget-stats": IntegrationsBudget,
+		"/olimpic-stats/block-chain": IntegrationBlockChain,
 		"*": NotFound
 	}
 	
