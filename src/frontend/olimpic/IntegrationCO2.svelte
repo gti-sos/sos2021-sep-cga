@@ -69,7 +69,6 @@
     <Button outline color="secondary" onclick="window.location.href='#/integrations'">Volver</Button>
     <br>
     <br>
-    <!--<h1>Gráfico que muestra la cantidad media de CO2 en el aire durante el año 2011 y el total de medallas en nuestra historia</h1>-->
     <div id="chart">
         Gráfico que muestra la cantidad media de CO2 en el aire durante el año 2011 y el total de medallas en nuestra historia
     </div>

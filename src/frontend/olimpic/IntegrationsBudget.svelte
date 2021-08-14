@@ -102,6 +102,8 @@
     <Button outline color="secondary" onclick="window.location.href='#/integrations'">Volver</Button>
     <br>
     <br>
-    <h1>Gráfico que muestra el Presupuesto en distintas ciudades de España y el número de medallas de oro en 2016.</h1>
-    <div id="chartDiv"></div>
+    <!--<h1>Gráfico que muestra el Presupuesto en distintas ciudades de España y el número de medallas de oro en 2016.</h1>-->
+    <div id="chartDiv">
+      Gráfico que muestra el Presupuesto en distintas ciudades de España y el número de medallas de oro en 2016.
+    </div>
   </main>
