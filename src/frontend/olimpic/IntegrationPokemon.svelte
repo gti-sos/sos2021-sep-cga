@@ -1,4 +1,11 @@
 <script>
+
+import Header from '../Header.svelte';
+    import Button from "sveltestrap/src/Button.svelte";
+    import {
+        onMount
+    } from "svelte";
+
     let frase;
     async function loadGraph(){
         let Datas = [];
@@ -19,13 +26,13 @@
         let res_data1 = await res1.json()
         let res_data2 = await res2.json()
         console.log(res_data1)
-        aux = 'Número en la pokedex:' + res_data1[0].pokemon_id  + " - " +'Nombre del Pokemon:' + res_data1[0].pokemon_name;
+        aux = 'Número en la pokedex : ' + res_data1[18].pokemon_id  + " - " +'Nombre del Pokemon : ' + res_data1[18].pokemon_name;
         let myData1={
             name: aux,
-            data: [(res_data1[0].max_pokemon_action_frequency + res_data1[0].min_pokemon_action_frequency)/2] 
+            data: [(res_data1[18].max_pokemon_action_frequency + res_data1[18].min_pokemon_action_frequency)/2] 
         };
         res_data2.forEach((data) => {
-            if(data.year == 2016){
+            if(data.year == 2021){
                 myData['data'].push({
                     name:data.city  + " " +data.year,
                     value: data.gold_medal
@@ -42,7 +49,7 @@
         height: '100%'
     },
     title: {
-        text: 'Gráfica que contiene las medallas de oro de Rio 2016 y la probabilidad media de captura del primer pokemon de Pokemon GO'
+        text: 'Gráfica que contiene las medallas de oro de Tokyo 2021 y la probabilidad media de captura de Charizard en de Pokemon GO'
     },
     tooltip: {
         useHTML: true,
@@ -89,7 +96,12 @@
 
 
 <main>
-
+    <Header/>
+    <br>
+    <br>
+    <Button outline color="secondary" onclick="window.location.href='#/integrations'">Volver</Button>
+    <br>
+    <br>
     <figure class="highcharts-figure">
         <div id="container"></div>
         <p class="highcharts-description">
