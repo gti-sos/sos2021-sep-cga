@@ -7,6 +7,13 @@ var db = new Datastore({ filename: datafile, autoload: true});
 
 var olimpicInitialData = [
 	{
+		"city": "Tokyo",
+		"year": 2021,
+		"gold_medal": 3,
+		"silver_medal": 8,
+		"bronze_medal": 6,
+	},
+	{
 		"city": "Rio",
 		"year": 2016,
 		"gold_medal": 7,

@@ -99,7 +99,7 @@
     <Header/>
     <br>
     <br>
-    <Button outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
+    <Button outline color="secondary" onclick="window.location.href='#/integrations'">Volver</Button>
     <br>
     <br>
     <h1>Gráfico que muestra el Presupuesto en distintas ciudades de España y el número de medallas de oro en 2016.</h1>
