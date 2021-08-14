@@ -19,7 +19,7 @@
         let res_data1 = await res1.json()
         let res_data2 = await res2.json()
         console.log(res_data1)
-        aux = 'Número en la pokedex' + res_data1[0].pokemon_id  + ' ' + res_data1[0].pokemon_name
+        aux = 'Número en la pokedex :' + res_data1[0].pokemon_id  + 'Nombre del Pokemon :' + res_data1[0].pokemon_name;
         let myData1={
             name: aux,
             data: [res_data1[0].attack_probability] 
