@@ -1,14 +1,14 @@
 <script>
     let aux = 0;
-    let Mexico = [];
-    let stringMexico;
-    let numMedallas=0;
+    let Calorias = [];
+    let stringComida;
+    let numMedallasOro=0;
     async function loadGraph(){
-        let res1 = await fetch("https://world-population.p.rapidapi.com/population?country_name=Mexico", {
+        let res1 = await fetch("https://food-calorie-data-search.p.rapidapi.com/api/search?keyword=apple", {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-key": "f644a4df9fmsh4cbfb9967f1e803p1b0e36jsna60d34ae1c3b",
-		"x-rapidapi-host": "world-population.p.rapidapi.com"
+		"x-rapidapi-host": "food-calorie-data-search.p.rapidapi.com"
 	}
 });
         let res2 = await fetch('/api/v2/olimpic-stats');
@@ -17,12 +17,16 @@
         let res_data2 = await res2.json();
         res_data2.forEach((data) => {
             if(data.year >= 2000){
-                numMedallas += data.gold_medal;
+                numMedallasOro = data.gold_medal;
             }
         })
-        stringMexico = 'La población total en' +  res_data1[0].country_name;
-        Mexico.push(res_data1[0]);
-        let poblacionMexico = Mexico[0].population;
+        res_data1.forEach((data) => {
+            if(data.id == 839){
+                stringComida = 'Calorías totales en ' +  data.shrt_desc;
+                Calorias.push(data);
+            }
+        })
+        let numCalorias = Calorias[0].energ_kcal;
         Highcharts.chart('container', {
   chart: {
     type: 'pie'
@@ -30,13 +34,13 @@
   series: [{
     colorByPoint: true,
     data: [{
-      name: stringMexico,
-      y: poblacionMexico,
+      name: stringComida,
+      y: numCalorias,
       sliced: true,
       selected: true
     }, {
       name: 'Presentados selectividad 2020',
-      y: numMedallas
+      y: numMedallasOro
     }
     ]
   }]
