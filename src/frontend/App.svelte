@@ -13,6 +13,7 @@
 	import IntegrationSanity from "./olimpic/IntegrationSanity.svelte";
 	import IntegrationsBudget from './olimpic/IntegrationsBudget.svelte';
 	import IntegrationBlockChain from './olimpic/IntegrationBlockChain.svelte';
+	import IntegrationPokemon from './olimpic/IntegrationPokemon.svelte';
 	
 	
 	const routes = {
@@ -27,6 +28,7 @@
 		"/olimpic-stats/sanity-stats": IntegrationSanity,
 		"/olimpic-stats/budget-stats": IntegrationsBudget,
 		"/olimpic-stats/block-chain": IntegrationBlockChain,
+		"/olimpic-stats/pokemon": IntegrationPokemon,
 		"*": NotFound
 	}
 	
