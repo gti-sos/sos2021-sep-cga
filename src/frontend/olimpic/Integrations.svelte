@@ -41,7 +41,7 @@
 		<Button  class="secondary" onclick="window.location.href='/#/olimpic-stats/pokemon'"> I05-Pokemon</Button>
 		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/food'"> I06-Food</Button>
 		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/co2'"> I07-CO2 </Button>
-		<!--<Button class="secondary" onclick="window.location.href='/#/foodconsumption-stats/apiext2'"> API Externa 2</Button>-->
+		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/covid-india'"> I08-</Button>
 	</ul>
 
 </main>
