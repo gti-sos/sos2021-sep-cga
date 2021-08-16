@@ -9,11 +9,11 @@
         let res_data2 = await res2.json()
         res_data1.forEach((data) => {
             array.push(data.rent);
-            arrayLabel.push(data.province + data.year);
+            arrayLabel.push(data.province + " " + data.year);
         });
         res_data2.forEach((data) => {
-            array.push(data.gold_medal);
-            arrayLabel.push(data.city + data.year);
+            array.push(data.gold_medal + data.silver_medal + data.bronze_medal);
+            arrayLabel.push(data.city + " " + data.year);
         });
 const data = {
   labels: arrayLabel,
