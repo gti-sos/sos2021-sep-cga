@@ -8,15 +8,15 @@
 	import EditOli from './olimpic/EditOli.svelte';
 	import GraphsOli from './olimpic/GraphsOli.svelte';
 	import GraphsOliv2 from './olimpic/GraphsOliv2.svelte';
-	import Integrations from './olimpic/Integrations.svelte';
-	import IntegrationSmoke from './olimpic/IntegrationSmoke.svelte';
-	import IntegrationSanity from "./olimpic/IntegrationSanity.svelte";
-	import IntegrationsBudget from './olimpic/IntegrationsBudget.svelte';
-	import IntegrationBlockChain from './olimpic/IntegrationBlockChain.svelte';
-	import IntegrationPokemon from './olimpic/IntegrationPokemon.svelte';
-	import IntegrationFood from './olimpic/IntegrationFood.svelte';
-	import IntegrationCO2 from './olimpic/IntegrationCO2.svelte';
-	import IntegrationRental from './olimpic/IntegrationRental.svelte';
+	import Integrations from "./olimpic/Integrations.svelte"
+	import IntegrationSmoke from './olimpic/Integrations/IntegrationSmoke.svelte';
+	import IntegrationSanity from "./olimpic/Integrations/IntegrationSanity.svelte";
+	import IntegrationsBudget from './olimpic/Integrations/IntegrationsBudget.svelte';
+	import IntegrationBlockChain from './olimpic/Integrations/IntegrationBlockChain.svelte';
+	import IntegrationPokemon from './olimpic/Integrations/IntegrationPokemon.svelte';
+	import IntegrationFood from './olimpic/Integrations/IntegrationFood.svelte';
+	import IntegrationCO2 from './olimpic/Integrations/IntegrationCO2.svelte';
+	import IntegrationRental from './olimpic/Integrations/IntegrationRental.svelte';
 	
 	
 	const routes = {

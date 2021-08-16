@@ -37,11 +37,11 @@
 		<Button  class="secondary" onclick="window.location.href='#/integrations/smoke-stats'" >I01-Smoke Stats</Button>
 		<Button  class="secondary" onclick="window.location.href='/#/integrations/sanity-stats'"> I02-Sanity Stats</Button>
 		<Button class="secondary" onclick="window.location.href='/#/integrations/budget-stats'"> I03-Budget Stats</Button>
-		<Button class="secondary" onclick="window.location.href='/#/integrations/block-chain'"> I04-Block Chain</Button>
-		<Button  class="secondary" onclick="window.location.href='/#/integrations/pokemon'"> I05-Pokemon</Button>
-		<Button class="secondary" onclick="window.location.href='/#/integrations/food'"> I06-Food</Button>
-		<Button class="secondary" onclick="window.location.href='/#/integrations/co2'"> I07-CO2 </Button>
-		<Button class="secondary" onclick="window.location.href='/#/integrations/rental'"> I08-Rental</Button>
+		<Button class="secondary" onclick="window.location.href='/#/integrations/block-chain'"> I04-Block Chain (Externa)</Button>
+		<Button  class="secondary" onclick="window.location.href='/#/integrations/pokemon'"> I05-Pokemon (Externa)</Button>
+		<Button class="secondary" onclick="window.location.href='/#/integrations/food'"> I06-Food (Externa)</Button>
+		<Button class="secondary" onclick="window.location.href='/#/integrations/co2'"> I07-CO2 (Externa)</Button>
+		<Button class="secondary" onclick="window.location.href='/#/integrations/rental'"> I08-Rental (Proxy)</Button>
 	</ul>
 
 </main>

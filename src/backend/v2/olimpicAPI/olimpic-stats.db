@@ -1,24 +1,24 @@
-{"city":"Tokyo","year":2021,"gold_medal":3,"silver_medal":8,"bronze_medal":6,"_id":"HCzl9rbwU50k6h1K"}
-{"city":"Rio","year":2016,"gold_medal":7,"silver_medal":4,"bronze_medal":6,"_id":"GaGxGmSEkFCH1Kk0"}
-{"city":"London","year":2012,"gold_medal":4,"silver_medal":10,"bronze_medal":4,"_id":"sRf3GORZ3W8p96RQ"}
-{"city":"Pekin","year":2008,"gold_medal":5,"silver_medal":11,"bronze_medal":3,"_id":"dCrh8YRtYjYwfAZb"}
-{"city":"Athens","year":2004,"gold_medal":3,"silver_medal":11,"bronze_medal":6,"_id":"bJ8t3pLTpsguPJda"}
-{"city":"Sidney","year":2000,"gold_medal":3,"silver_medal":3,"bronze_medal":5,"_id":"LbMP6CYLIxOBFWrP"}
-{"city":"Atlanta","year":1996,"gold_medal":5,"silver_medal":6,"bronze_medal":6,"_id":"UcfPZFbIYq6iO5v2"}
+{"city":"Tokyo","year":1964,"gold_medal":0,"silver_medal":0,"bronze_medal":0,"_id":"1lzxZpDD8OTej8lg"}
 {"city":"Barcelona","year":1992,"gold_medal":13,"silver_medal":7,"bronze_medal":2,"_id":"3C16Odjqc5nWtIwo"}
-{"city":"Seoul","year":1988,"gold_medal":1,"silver_medal":1,"bronze_medal":2,"_id":"oiwN4dsIT1vBe2Uw"}
+{"city":"Munich","year":1972,"gold_medal":0,"silver_medal":0,"bronze_medal":1,"_id":"63YVkXIUENSAfqSq"}
+{"city":"Amsterdam","year":1928,"gold_medal":1,"silver_medal":0,"bronze_medal":0,"_id":"7E5dsp9S9sADEVMg"}
+{"city":"Rio","year":2016,"gold_medal":7,"silver_medal":4,"bronze_medal":6,"_id":"GaGxGmSEkFCH1Kk0"}
+{"city":"Tokyo","year":2021,"gold_medal":3,"silver_medal":8,"bronze_medal":6,"_id":"HCzl9rbwU50k6h1K"}
+{"city":"Paris","year":1900,"gold_medal":1,"silver_medal":0,"bronze_medal":0,"_id":"J5YdTbCcAiLn7ylN"}
+{"city":"Helsinki","year":1952,"gold_medal":0,"silver_medal":1,"bronze_medal":0,"_id":"J5w1Y8hfm5qOogYz"}
+{"city":"Mexico","year":1968,"gold_medal":0,"silver_medal":0,"bronze_medal":0,"_id":"LSTrt0XhWaq3LHnw"}
+{"city":"Sidney","year":2000,"gold_medal":3,"silver_medal":3,"bronze_medal":5,"_id":"LbMP6CYLIxOBFWrP"}
+{"city":"Paris","year":1924,"gold_medal":0,"silver_medal":0,"bronze_medal":0,"_id":"O2TGoNktMo7Qgk5Y"}
+{"city":"London","year":1948,"gold_medal":0,"silver_medal":1,"bronze_medal":0,"_id":"RQ1BpBfu7hWxooe4"}
+{"city":"Roma","year":1960,"gold_medal":0,"silver_medal":0,"bronze_medal":1,"_id":"UCFqrVrXYCNBYwLw"}
+{"city":"Atlanta","year":1996,"gold_medal":5,"silver_medal":6,"bronze_medal":6,"_id":"UcfPZFbIYq6iO5v2"}
+{"city":"Melbourne","year":1956,"gold_medal":0,"silver_medal":0,"bronze_medal":0,"_id":"Vi5tnu9aAks6DRUy"}
+{"city":"Athens","year":2004,"gold_medal":3,"silver_medal":11,"bronze_medal":6,"_id":"bJ8t3pLTpsguPJda"}
+{"city":"Amberes","year":1920,"gold_medal":0,"silver_medal":2,"bronze_medal":0,"_id":"bhRxZw5CsLHUXDMj"}
+{"city":"Pekin","year":2008,"gold_medal":5,"silver_medal":11,"bronze_medal":3,"_id":"dCrh8YRtYjYwfAZb"}
+{"city":"Los Angeles","year":1932,"gold_medal":0,"silver_medal":0,"bronze_medal":1,"_id":"gZN29AzMMSCA1eMC"}
 {"city":"Los Angeles","year":1984,"gold_medal":1,"silver_medal":2,"bronze_medal":2,"_id":"hWe3fzEz6FLE572Q"}
 {"city":"Moscow","year":1980,"gold_medal":1,"silver_medal":3,"bronze_medal":2,"_id":"nf8Trfc79UDVRk1v"}
+{"city":"Seoul","year":1988,"gold_medal":1,"silver_medal":1,"bronze_medal":2,"_id":"oiwN4dsIT1vBe2Uw"}
+{"city":"London","year":2012,"gold_medal":4,"silver_medal":10,"bronze_medal":4,"_id":"sRf3GORZ3W8p96RQ"}
 {"city":"Montreal","year":1976,"gold_medal":0,"silver_medal":2,"bronze_medal":0,"_id":"y7gvAnSE2OYaVPp3"}
-{"city":"Munich","year":1972,"gold_medal":0,"silver_medal":0,"bronze_medal":1,"_id":"63YVkXIUENSAfqSq"}
-{"city":"Mexico","year":1968,"gold_medal":0,"silver_medal":0,"bronze_medal":0,"_id":"LSTrt0XhWaq3LHnw"}
-{"city":"Tokyo","year":1964,"gold_medal":0,"silver_medal":0,"bronze_medal":0,"_id":"1lzxZpDD8OTej8lg"}
-{"city":"Roma","year":1960,"gold_medal":0,"silver_medal":0,"bronze_medal":1,"_id":"UCFqrVrXYCNBYwLw"}
-{"city":"Melbourne","year":1956,"gold_medal":0,"silver_medal":0,"bronze_medal":0,"_id":"Vi5tnu9aAks6DRUy"}
-{"city":"Helsinki","year":1952,"gold_medal":0,"silver_medal":1,"bronze_medal":0,"_id":"J5w1Y8hfm5qOogYz"}
-{"city":"London","year":1948,"gold_medal":0,"silver_medal":1,"bronze_medal":0,"_id":"RQ1BpBfu7hWxooe4"}
-{"city":"Los Angeles","year":1932,"gold_medal":0,"silver_medal":0,"bronze_medal":1,"_id":"gZN29AzMMSCA1eMC"}
-{"city":"Amsterdam","year":1928,"gold_medal":1,"silver_medal":0,"bronze_medal":0,"_id":"7E5dsp9S9sADEVMg"}
-{"city":"Paris","year":1924,"gold_medal":0,"silver_medal":0,"bronze_medal":0,"_id":"O2TGoNktMo7Qgk5Y"}
-{"city":"Amberes","year":1920,"gold_medal":0,"silver_medal":2,"bronze_medal":0,"_id":"bhRxZw5CsLHUXDMj"}
-{"city":"Paris","year":1900,"gold_medal":1,"silver_medal":0,"bronze_medal":0,"_id":"J5YdTbCcAiLn7ylN"}
