@@ -16,7 +16,7 @@
 	import IntegrationPokemon from './olimpic/IntegrationPokemon.svelte';
 	import IntegrationFood from './olimpic/IntegrationFood.svelte';
 	import IntegrationCO2 from './olimpic/IntegrationCO2.svelte';
-	import IntegrationCovidIndia from './olimpic/IntegrationCovidIndia.svelte';
+	import IntegrationRental from './olimpic/IntegrationRental.svelte';
 	
 	
 	const routes = {
@@ -34,7 +34,7 @@
 		"/olimpic-stats/pokemon": IntegrationPokemon,
 		"/olimpic-stats/food":IntegrationFood,
 		"/olimpic-stats/co2":IntegrationCO2,
-		"/olimpic-stats/covid-india": IntegrationCovidIndia,
+		"/olimpic-stats/rental": IntegrationRental,
 		"*": NotFound
 	}
 	

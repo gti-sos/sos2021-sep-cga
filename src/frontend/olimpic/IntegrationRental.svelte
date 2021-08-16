@@ -1,4 +1,11 @@
 <script>
+
+    import Header from '../Header.svelte';
+    import Button from "sveltestrap/src/Button.svelte";
+    import {
+        onMount
+    } from "svelte";
+
     let array = [];
     let arrayLabel = [];
     async function loadChart(){
@@ -43,7 +50,7 @@ const data = {
       },
       title: {
         display: true,
-        text: 'Gráfica que muestra el nº de pruebas positivas de covid en la India en diferentes estados y la nota de corte de varios años del grado de Ing. informática en la US'
+        text: 'Gráfica que muestra el nº de alquileres en distintas zonas de España y el número totales de medallas'
       }
     }
   },
@@ -54,7 +61,13 @@ const data = {
 </script>
 
 <main>
-    <canvas id="myChart" width="400" height="400"></canvas>
+  <Header/>
+        <br>
+        <br>
+        <Button outline color="secondary" onclick="window.location.href='#/integrations'">Volver</Button>
+        <br>
+        <br>  
+  <canvas id="myChart" width="400" height="400"></canvas>
 
 </main>
 
