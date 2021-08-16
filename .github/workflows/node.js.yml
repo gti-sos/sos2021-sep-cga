@@ -15,5 +15,5 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm start &
-      - run: npx newman run test/sos2021-sep-cga v2.postman_collection.json
+      - run: npx newman run test/sos2021-sep-cgav2.postman_collection.json
       - run: node test/e2e.js
