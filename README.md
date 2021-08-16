@@ -23,11 +23,12 @@
         <p><strong>Interfaces de Programación de Aplicaciones (IPA)</strong>:</p>
         <ul>
             <li>
-                <p><i>Fuente de datos:</i> <strong>"Surrenders by degrees US"</strong></p>
-                | Revisa la IPA <a href="https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats">https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats</a> (desarrollada por <a href="https://github.com/cargonare1">Carlos González Arenas</a>)
-                <br> | Revisa la documentación de la IPA en: <a href="https://documenter.getpostman.com/view/12390654/TzseKmsN">Documentación de la IPA Spain JJOO</a>
-                <br>| Revisa la documentación de la IPAv2 en: <a href="https://documenter.getpostman.com/view/12390654/TzRXA6cF"> Documentación IPA</a>
-                <br> | Revisa la Interfaz Gráfica de Usuario de la IPA en: <a href="/cargonare1/"> Interfaz Gráfica de Usuario</a>
+                <p><i>Fuente de datos:</i> <strong>"Spain Medals in Olimpic Games"</strong></p>
+                | Revisa la IPA V1<a href="https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats">https://sos2021-sep-cga.herokuapp.com/api/v1/olimpic-stats</a> (desarrollada por <a href="https://github.com/cargonare1">Carlos González Arenas</a>)
+                <br> | Revisa la IPA V2<a href="https://sos2021-sep-cga.herokuapp.com/api/v2/olimpic-stats">https://sos2021-sep-cga.herokuapp.com/api/v2/olimpic-stats</a> (desarrollada por <a href="https://github.com/cargonare1">Carlos González Arenas</a>)
+                <br> | Revisa la documentación de la IPA en: <a href="https://documenter.getpostman.com/view/12390654/TzseKmsN">Documentación IPA</a>
+                <br>| Revisa la documentación de la IPAv2 en: <a href="https://documenter.getpostman.com/view/12390654/Tzz8sHNK"> Documentación IPA</a>
+                <br> | Revisa la Interfaz Gráfica de Usuario de la IPA en: <a href="https://sos2021-sep-cga.herokuapp.com/#/olimpic-stats"> Interfaz Gráfica de Usuario</a>
             </li>
             </li>
         </ul>

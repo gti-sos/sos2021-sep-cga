@@ -11,7 +11,7 @@ const url = '../e2e_capturas';
   await page.waitForTimeout(1000);
   await page.click("body > main > main > main > nav > div > ul > li:nth-child(1) > a");
   await page.waitForTimeout(100);
-  await page.screenshot({ path: url + 'FoodConsumption.png' });
+  await page.screenshot({ path: url + 'Olimpic-stats.png' });
 
  //Captura tabla
   /*await page.click("body > main > main > button:nth-child(9)");
