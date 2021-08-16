@@ -34,14 +34,14 @@
 		Intregraciones:
 	</h2>
 	<ul>
-		<Button  class="secondary" onclick="window.location.href='#/olimpic-stats/smoke-stats'" >I01-Smoke Stats</Button>
-		<Button  class="secondary" onclick="window.location.href='/#/olimpic-stats/sanity-stats'"> I02-Sanity Stats</Button>
-		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/budget-stats'"> I03-Budget Stats</Button>
-		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/block-chain'"> I04-Block Chain</Button>
-		<Button  class="secondary" onclick="window.location.href='/#/olimpic-stats/pokemon'"> I05-Pokemon</Button>
-		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/food'"> I06-Food</Button>
-		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/co2'"> I07-CO2 </Button>
-		<Button class="secondary" onclick="window.location.href='/#/olimpic-stats/rental'"> I08-Rental</Button>
+		<Button  class="secondary" onclick="window.location.href='#/integrations/smoke-stats'" >I01-Smoke Stats</Button>
+		<Button  class="secondary" onclick="window.location.href='/#/integrations/sanity-stats'"> I02-Sanity Stats</Button>
+		<Button class="secondary" onclick="window.location.href='/#/integrations/budget-stats'"> I03-Budget Stats</Button>
+		<Button class="secondary" onclick="window.location.href='/#/integrations/block-chain'"> I04-Block Chain</Button>
+		<Button  class="secondary" onclick="window.location.href='/#/integrations/pokemon'"> I05-Pokemon</Button>
+		<Button class="secondary" onclick="window.location.href='/#/integrations/food'"> I06-Food</Button>
+		<Button class="secondary" onclick="window.location.href='/#/integrations/co2'"> I07-CO2 </Button>
+		<Button class="secondary" onclick="window.location.href='/#/integrations/rental'"> I08-Rental</Button>
 	</ul>
 
 </main>

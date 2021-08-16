@@ -60,8 +60,12 @@
 	
 	<Breadcrumb class="peque">
 		<BreadcrumbItem active>Estadísticas de medallas </BreadcrumbItem>
-  		<BreadcrumbItem><a href="https://documenter.getpostman.com/view/12390654/TzseKmsN">Medal_Postman</a></BreadcrumbItem>
+  		<BreadcrumbItem><a href="https://documenter.getpostman.com/view/12390654/TzseKmsN">V1</a></BreadcrumbItem>
 	</Breadcrumb>
+	<Breadcrumb>
+		<BreadcrumbItem active>Estadísticas de medallas</BreadcrumbItem>
+		<BreadcrumbItem><a href="https://documenter.getpostman.com/view/12390654/Tzz8sHNK">V2</a></BreadcrumbItem>
+	  </Breadcrumb>
 	
 	
 

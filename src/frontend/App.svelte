@@ -27,14 +27,14 @@
 		"/olimpic-stats/graphs": GraphsOli,
 		"/olimpic-stats/graphsv2": GraphsOliv2,
 		"/integrations": Integrations,
-		"/olimpic-stats/smoke-stats": IntegrationSmoke,
-		"/olimpic-stats/sanity-stats": IntegrationSanity,
-		"/olimpic-stats/budget-stats": IntegrationsBudget,
-		"/olimpic-stats/block-chain": IntegrationBlockChain,
-		"/olimpic-stats/pokemon": IntegrationPokemon,
-		"/olimpic-stats/food":IntegrationFood,
-		"/olimpic-stats/co2":IntegrationCO2,
-		"/olimpic-stats/rental": IntegrationRental,
+		"/integrations/smoke-stats": IntegrationSmoke,
+		"/integrations/sanity-stats": IntegrationSanity,
+		"/integrations/budget-stats": IntegrationsBudget,
+		"/integrations/block-chain": IntegrationBlockChain,
+		"/integrations/pokemon": IntegrationPokemon,
+		"/integrations/food":IntegrationFood,
+		"/integrations/co2":IntegrationCO2,
+		"/integrations/rental": IntegrationRental,
 		"*": NotFound
 	}
 	

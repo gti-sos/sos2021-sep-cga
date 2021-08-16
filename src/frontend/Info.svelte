@@ -89,12 +89,14 @@
 		Documentación en Postman:
 	</h2>
 	<ul>
-		<Breadcrumb class="peque">
+		<Breadcrumb>
   			<BreadcrumbItem active>Estadísticas de medallas</BreadcrumbItem>
   			<BreadcrumbItem><a href="https://documenter.getpostman.com/view/12390654/TzseKmsN">V1</a></BreadcrumbItem>
-			
 		</Breadcrumb>
-			
+		<Breadcrumb>
+			<BreadcrumbItem active>Estadísticas de medallas</BreadcrumbItem>
+			<BreadcrumbItem><a href="https://documenter.getpostman.com/view/12390654/Tzz8sHNK">V2</a></BreadcrumbItem>
+	  	</Breadcrumb>	
 	</ul>
 
 </main>
