@@ -1,8 +1,9 @@
 var express = require("express");
 var request = require('request');
 var path = require("path");
-
+var app = express();
 var bodyParser = require("body-parser");
+var PORT = (process.env.PORT || 10000);
 
 var olimpic_APIv1 =  require("./src/backend/v1/olimpicAPI");
 var olimpic_APIv2 =  require("./src/backend/v2/olimpicAPI");
@@ -24,9 +25,6 @@ app.use("/olimpicAPI/proxyRequest/:api", function(req, res) {
 });
 
 
-var PORT = (process.env.PORT || 10000);
-
-var app = express();
 app.use(bodyParser.json());
 app.use("/", express.static(path.join(__dirname,"public")));
 
