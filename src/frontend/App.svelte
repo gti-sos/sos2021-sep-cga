@@ -17,6 +17,7 @@
 	import IntegrationFood from './olimpic/Integrations/IntegrationFood.svelte';
 	import IntegrationCO2 from './olimpic/Integrations/IntegrationCO2.svelte';
 	import IntegrationRental from './olimpic/Integrations/IntegrationRental.svelte';
+	import About from './About.svelte';
 	
 	
 	const routes = {
@@ -35,6 +36,7 @@
 		"/integrations/food":IntegrationFood,
 		"/integrations/co2":IntegrationCO2,
 		"/integrations/rental": IntegrationRental,
+		"/about": About,
 		"*": NotFound
 	}
 	
