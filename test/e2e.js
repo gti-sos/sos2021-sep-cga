@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const url = './e2e_capturas/';
+const url = 'e2e_capturas/';
 
 (async () => {
   const browser = await puppeteer.launch();
