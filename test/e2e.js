@@ -64,7 +64,7 @@ if (!fs.existsSync("e2e_capturas")){
     await page.waitForTimeout(1000);
 
     await page.click("#filtro");
-    
+    await page.waitForTimeout(2000);
 
     await page.screenshot({ path: url + 'DatosFiltrados.png'});
 
