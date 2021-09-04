@@ -44,12 +44,11 @@ if (!fs.existsSync("e2e_capturas")){
     await page.type('#anyo', '2018');
     await page.type('#oro', '7');
     await page.type('#plata', '10000');
-    await page.type('#bronze', '852');
+    await page.type('#bronce', '852');
+    await page.waitForTimeout(500);
+    await page.click("#insert", { waitUntil: "networkidle0" });
     await page.waitForTimeout(1000);
     await page.screenshot({ path: url + 'datos_insertados.png' });
-
-    await page.click("#insert", { waitUntil: "networkidle0" });
-
 
     await browser.close();
 })();
