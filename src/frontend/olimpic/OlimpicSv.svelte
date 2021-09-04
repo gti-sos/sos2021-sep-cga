@@ -279,12 +279,12 @@ let filterOlimpic= {
 		</thead>
 		<tbody>
 			<tr>
-				<td><input bind:value="{newOlimpic.city}"></td>
-				<td><input type=number bind:value="{newOlimpic.year}"></td>
-				<td><input type=number bind:value="{newOlimpic.gold_medal}"></td>
-				<td><input type=number bind:value="{newOlimpic.silver_medal}"></td>
-				<td><input type=number bind:value="{newOlimpic.bronze_medal}"></td>
-				<td><Button on:click={insertOlimpic}>Insertar</Button></td>
+				<td><input id='ciudad' bind:value="{newOlimpic.city}"></td>
+				<td><input id='anyo' type=number bind:value="{newOlimpic.year}"></td>
+				<td><input id='oro' type=number bind:value="{newOlimpic.gold_medal}"></td>
+				<td><input id='plata' type=number bind:value="{newOlimpic.silver_medal}"></td>
+				<td><input id='bronce'type=number bind:value="{newOlimpic.bronze_medal}"></td>
+				<td><Button id='insert' on:click={insertOlimpic}>Insertar</Button></td>
 			</tr>
 			{#each olimpic as obe}
 				<tr>
