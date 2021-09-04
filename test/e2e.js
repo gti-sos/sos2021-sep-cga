@@ -26,8 +26,15 @@ if (!fs.existsSync("e2e_capturas")){
     await page.click("#charge", { waitUntil: "networkidle0" });
 
     await page.waitForTimeout(1000);
-    await page.screenshot({ path: url + 'TableApi.png' });
-    console.log("La tabla funciona...");
+    await page.screenshot({ path: url + 'TablaCargada.png' });
+    console.log("La tabla carga los datos correctamente...");
+
+    console.log("-- Test 3 - ¿ La tabla elimina los datos ?");
+    await page.click("#delete", { waitUntil: "networkidle0" });
+
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: url + 'TablaEliminada.png' });
+    console.log("La tabla carga los datos correctamente...");
 
 
     await browser.close();
