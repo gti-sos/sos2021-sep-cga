@@ -294,7 +294,7 @@ let filterOlimpic= {
 				<td>{obe.gold_medal}</td>
 				<td>{obe.silver_medal}</td>
 				<td>{obe.bronze_medal}</td>
-				<td><Button on:click={deleteolimpic(obe.city,obe.year)}>Borrar</Button></td>
+				<td><Button id='eliminar_dato_nuevo' on:click={deleteolimpic(obe.city,obe.year)}>Borrar</Button></td>
 				
 				
 				</tr>

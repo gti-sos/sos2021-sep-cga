@@ -48,7 +48,13 @@ if (!fs.existsSync("e2e_capturas")){
     await page.waitForTimeout(500);
     await page.click("#insert", { waitUntil: "networkidle0" });
     await page.waitForTimeout(1000);
-    await page.screenshot({ path: url + 'datos_insertados.png' });
+    await page.screenshot({ path: url + 'Datos_insertados.png' });
+    console.log("Datos introducidos correctamente...");
+
+    console.log("-- Test 5 - Eliminar Dato Nuevo");
+    await page.click("#eliminar_dato_nuevo", { waitUntil: "networkidle0" });
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: url + 'Dato_Nuevo.png' });
 
     await browser.close();
 })();
