@@ -38,7 +38,7 @@
 	</h2>
 	<h5>Estadísticas de medallas:</h5>
 	
-		<Button outline color="warning" on:click={toggleob}>Abrir</Button>
+		<Button id="open" outline color="warning" on:click={toggleob}>Abrir</Button>
 		<Modal isOpen={openob} {toggleob} size= 'xl'>
 			<ModalHeader {toggleob}>Estadísticas de medallas</ModalHeader>
 			<ModalBody>

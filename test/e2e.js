@@ -20,11 +20,12 @@ if (!fs.existsSync("e2e_capturas")){
 
     //  -------- Test 2 - The charging data, deleting data works and the table too?.
 
-    console.log("-- Test 2 - The loadInitialData works and the table too?");
+    console.log("-- Test 2 - ¿ La tabla carga los datos ?");
     await page.click("#link-to-table", { waitUntil: "networkidle0" });
+    await page.click("#open", { waitUntil: "networkidle0" });
 
     await page.waitForTimeout(1000);
-    await page.screenshot({ path: url + 'cuts_api_02.png' });
+    await page.screenshot({ path: url + 'TableApi.png' });
     console.log("   The table works...");
 
 
