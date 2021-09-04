@@ -244,7 +244,7 @@ let filterOlimpic= {
 			<Form>
   				<FormGroup>
    						 
-					<CustomInput type="checkbox" id="filtroCiudad" label="Ciudad" ><input bind:value="{filterOlimpic.city}"></CustomInput>
+					<CustomInput type="checkbox" id="filtroCiudad" label="Ciudad" ><input id="datofiltroCiudad" bind:value="{filterOlimpic.city}"></CustomInput>
 					<CustomInput type="checkbox" id="filtroAnyo" label="Año:" ><input type=number bind:value="{filterOlimpic.year}"></CustomInput>
 					<CustomInput type="checkbox" id="filtroOro" label="Medallas de oro" ><input type=number bind:value="{filterOlimpic.gold_medal}"></CustomInput>
 					<CustomInput type="checkbox" id="filtroPlata" label="Medallas de plata" ><input type=number bind:value="{filterOlimpic.silver_medal}"></CustomInput>

@@ -54,7 +54,20 @@ if (!fs.existsSync("e2e_capturas")){
     console.log("-- Test 5 - Eliminar Dato Nuevo");
     await page.click("#eliminar_dato_nuevo", { waitUntil: "networkidle0" });
     await page.waitForTimeout(1000);
-    await page.screenshot({ path: url + 'Dato_Nuevo.png' });
+    await page.screenshot({ path: url + 'Dato_Nuevo_Eliminado.png' });
+
+    console.log("-- Test 6 - Buscar Datos");
+    await page.click("#btn-right");
+    await page.click("#filtroCiudad");
+    await page.focus('#datoFiltroCiudad');
+    await page.keyboard.type("Tokyo");
+    await page.waitForTimeout(1000);
+
+    await page.click("body > main > main > div > div.modal.show.d-block > div > div > div.modal-body > main > div.mt-3 > div > div.popover-body > ul > button.btn.btn-secondary");
+    
+
+    await page.screenshot({ path: url + 'DatosFiltrados.png'});
+
 
     await browser.close();
 })();
