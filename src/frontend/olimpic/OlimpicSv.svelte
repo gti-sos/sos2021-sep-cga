@@ -250,7 +250,7 @@ let filterOlimpic= {
 					<CustomInput type="checkbox" id="filtroPlata" label="Medallas de plata" ><input type=number bind:value="{filterOlimpic.silver_medal}"></CustomInput>
 					<CustomInput type="checkbox" id="filtroBronce" label="Medallas de bronce" ><input type=number bind:value="{filterOlimpic.bronze_medal}"></CustomInput>
 					<br>
-					<Button on:click={getFiltro}>Filtrar</Button>
+					<Button id='filtro' on:click={getFiltro}>Filtrar</Button>
 					<Button outline color="secondary" on:click="{getOlimpic}">Atrás</Button>
 				</FormGroup>
 			</Form>
