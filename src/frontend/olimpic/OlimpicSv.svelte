@@ -263,7 +263,7 @@ let filterOlimpic= {
 	
 		<thead>
 			<tr>
-				<td><Button on:click={OlimpicData}>Cargar datos</Button></td>
+				<td><Button id='charge' on:click={OlimpicData}>Cargar datos</Button></td>
 				<td><Button on:click={deleteAll}>Borrar datos</Button></td>
 					
 			</tr>

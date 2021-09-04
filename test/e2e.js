@@ -23,10 +23,11 @@ if (!fs.existsSync("e2e_capturas")){
     console.log("-- Test 2 - ¿ La tabla carga los datos ?");
     await page.click("#link-to-table", { waitUntil: "networkidle0" });
     await page.click("#open", { waitUntil: "networkidle0" });
+    await page.click("#charge", { waitUntil: "networkidle0" });
 
     await page.waitForTimeout(1000);
     await page.screenshot({ path: url + 'TableApi.png' });
-    console.log("   The table works...");
+    console.log("La tabla funciona...");
 
 
     await browser.close();
