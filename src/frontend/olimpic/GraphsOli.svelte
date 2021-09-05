@@ -94,7 +94,7 @@
     <Header/>
     <br>
     <br>
-    <Button outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
+    <Button id='back' outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
         <div style="margin:auto;"> 
         <figure class="highcharts-figure">
             <div id="container"></div>

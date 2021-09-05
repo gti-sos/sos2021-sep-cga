@@ -48,7 +48,7 @@
         <Header/>
         <br>
         <br>
-        <Button outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
+        <Button id='back2' outline color="secondary" onclick="window.location.href='#/olimpic-stats'">Volver</Button>
         <br>
         <br>
         <h1>Gráfico que muestra las medallas de Tokyo 2021</h1>
