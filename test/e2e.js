@@ -91,6 +91,15 @@ if (!fs.existsSync("e2e_capturas")){
     await page.waitForTimeout(2000);
   await page.screenshot({ path: url + 'QuickChartsGraph.png'});
     console.log("Gráfico Quickcharts generado...");
+
+    console.log("-- Test 9 - Eliminar Tabla Definitivamente");
+    await page.click("#back2");
+    await page.click("#open", { waitUntil: "networkidle0" });
+    await page.waitForTimeout(1000);
+    await page.click("#delete", { waitUntil: "networkidle0" });
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: url + 'UltimaEliminacion.png'});
+    console.log("Pruebas terminadas");
     
     await browser.close();
 })();
